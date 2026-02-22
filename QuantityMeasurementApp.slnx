@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="QuantityMeasurementApp.Tests/QuantityMeasurementApp.Tests.csproj" />
+  <Project Path="uc1-feet-equality/uc1-feet-equality.csproj" />
+</Solution>
