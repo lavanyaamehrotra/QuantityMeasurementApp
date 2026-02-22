@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\uc1-feet-equality\uc1-feet-equality.csproj" />
-  </ItemGroup>
+  <ProjectReference Include="..\QuantityMeasurementApp\QuantityMeasurementApp.csproj" />
+</ItemGroup>
 
 </Project>

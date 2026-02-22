@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using uc1_feet_equality.Entities;
+using QuantityMeasurementApp.Entities;
 namespace QuantityMeasurementApp.Tests
 {
     // UC1 - Feet Equality Tests
