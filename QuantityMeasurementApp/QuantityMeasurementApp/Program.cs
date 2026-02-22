@@ -1,6 +1,6 @@
-﻿using uc1_feet_equality.PresentationLayer;
+﻿using QuantityMeasurementApp.PresentationLayer;
 
-namespace uc1_feet_equality
+namespace QuantityMeasurementApp
 {
     // <summary>
     // Application entry point.

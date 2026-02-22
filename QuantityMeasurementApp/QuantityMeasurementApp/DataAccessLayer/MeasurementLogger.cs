@@ -1,6 +1,6 @@
 using System;
 
-namespace uc1_feet_equality.DataAccessLayer
+namespace QuantityMeasurementApp.DataAccessLayer
 {
     /// <summary>
     /// Responsible for logging application activities.

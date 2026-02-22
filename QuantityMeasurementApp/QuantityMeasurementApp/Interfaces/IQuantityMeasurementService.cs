@@ -1,6 +1,6 @@
-using uc1_feet_equality.Entities;
+using QuantityMeasurementApp.Entities;
 
-namespace uc1_feet_equality.Interfaces
+namespace QuantityMeasurementApp.Interfaces
 {
     /// <summary>
     /// Defines business operations for quantity measurement.

@@ -1,9 +1,9 @@
 using System;
-using uc1_feet_equality.Entities;
-using uc1_feet_equality.Interfaces;
-using uc1_feet_equality.DataAccessLayer;
+using QuantityMeasurementApp.Entities;
+using QuantityMeasurementApp.Interfaces;
+using QuantityMeasurementApp.DataAccessLayer;
 
-namespace uc1_feet_equality.BusinessLogicLayer
+namespace QuantityMeasurementApp.BusinessLogicLayer
 {
     // <summary>
     // Handles business validation and measurement comparison.

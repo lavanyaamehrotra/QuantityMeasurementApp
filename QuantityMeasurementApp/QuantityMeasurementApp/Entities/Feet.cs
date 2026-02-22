@@ -1,6 +1,6 @@
 using System;
 
-namespace uc1_feet_equality.Entities
+namespace QuantityMeasurementApp.Entities
 {
     /// <summary>
     /// Represents a measurement value in Feet.

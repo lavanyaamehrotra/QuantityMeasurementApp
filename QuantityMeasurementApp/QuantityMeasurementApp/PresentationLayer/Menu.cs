@@ -1,7 +1,7 @@
 using System;
-using uc1_feet_equality.BusinessLogicLayer;
+using QuantityMeasurementApp.BusinessLogicLayer;
 
-namespace uc1_feet_equality.PresentationLayer
+namespace QuantityMeasurementApp.PresentationLayer
 {
     // Menu class handles all user interaction
     // This is the Presentation Layer of the application
