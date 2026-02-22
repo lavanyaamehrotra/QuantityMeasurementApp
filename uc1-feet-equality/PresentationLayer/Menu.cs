@@ -93,6 +93,7 @@ namespace uc1_feet_equality.PresentationLayer
                 if (string.IsNullOrWhiteSpace(input2)){
                     throw new ArgumentException("Invalid input: Second value cannot be empty.");
                 }
+                //Try converting safely and give me converted number if possible.
                 if (!double.TryParse(input2, out double v2)){
                     throw new ArgumentException("Invalid input: Second value must be numeric.");
                 }
