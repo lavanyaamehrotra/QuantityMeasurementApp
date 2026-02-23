@@ -81,6 +81,7 @@ namespace QuantityMeasurementApp.PresentationLayer
 
                 if (string.IsNullOrWhiteSpace(input1)){
                     throw new ArgumentException("Invalid input: First value cannot be empty.");
+             
                 }
                 if (!double.TryParse(input1, out double v1)){
                     throw new ArgumentException("Invalid input: First value must be numeric.");
