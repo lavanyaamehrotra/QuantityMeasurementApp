@@ -176,20 +176,21 @@ var sum = feet.Add(inches, LengthUnit.YARD);
 | 1 ft + 12 in | INCH   | 24 in    |
 | 1 ft + 12 in | YARD   | 0.667 yd |
 
-```markdown
 ## 🏗 Architecture
+
 ```text
 ┌──────────────────────────────┐
 │ 🖥 Console UI                 │
-├────────────────────────────── ┤
-│ ⚙ Application Logic          │
 ├──────────────────────────────┤
-│ 📦 Quantity Domain          |
-│   - Quantity Class            │
-│   - LengthUnit Enum           │
+│ ⚙ Application Logic           │
+├──────────────────────────────┤
+│ 📦 Quantity Domain            │
+│   • Quantity Class            │
+│   • LengthUnit Enum           │
 ├──────────────────────────────┤
 │ 🔧 Core                       │
 └──────────────────────────────┘
+```
 
 ## Principle Applied
 | Principle    | Implementation       |
