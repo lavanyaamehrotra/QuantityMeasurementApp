@@ -65,9 +65,9 @@ bool areEqual = inch1.Equals(inch2);
 
 ```
 ## ✨ Features
-✔ Independent Inch class
-✔ Same equality contract as Feet
-✔ Introduced duplication (resolved in UC3)
+* ✔ Independent Inch class
+* ✔ Same equality contract as Feet
+* ✔ Introduced duplication (resolved in UC3)
 
 ## ✅ UC3: Generic Quantity Class 🧩
 
@@ -87,11 +87,11 @@ public class Quantity
 
 ```
 ## ✨ Features
-✔ Single reusable class
-✔ Enum-based units
-✔ DRY principle applied
-✔ Cross-unit equality
-✔ Supported Units:FEET ,INCH
+* ✔ Single reusable class
+* ✔ Enum-based units
+* ✔ DRY principle applied
+* ✔ Cross-unit equality
+* ✔ Supported Units:FEET ,INCH
 
 ## ✅ UC4: Extended Unit Support 📐
 
@@ -128,9 +128,9 @@ var yards = feet.ConvertTo(LengthUnit.YARD);
 
 ```
 ## ✨ Features
-✔ ConvertTo() method
-✔ Base unit normalization
-✔ Bidirectional conversion
+* ✔ ConvertTo() method
+* ✔ Base unit normalization
+* ✔ Bidirectional conversion
 
 | From | To   | Formula    |
 | ---- | ---- | ---------- |
@@ -149,10 +149,10 @@ var inches = new Quantity(12.0, LengthUnit.INCH);
 var sum = feet.Add(inches); // 2 ft
 ```
 ## ✨ Features
-✔ Cross-unit addition
-✔ Result in first operand unit
-✔ Immutable operations
-✔ Returns new object
+* ✔ Cross-unit addition
+* ✔ Result in first operand unit
+* ✔ Immutable operations
+* ✔ Returns new object
 
 | Operation    | Result |
 | ------------ | ------ |
@@ -167,8 +167,8 @@ Allows specifying desired output unit.
 var sum = feet.Add(inches, LengthUnit.YARD);
 ```
 ## ✨ Features
-✔ Overloaded Add() method
-✔ Flexible output unit
+* ✔ Overloaded Add() method
+* ✔ Flexible output unit
 
 | Operation    | Target | Result   |
 | ------------ | ------ | -------- |
@@ -179,17 +179,17 @@ var sum = feet.Add(inches, LengthUnit.YARD);
 ## 🏗 Architecture
 
 ```text
-┌──────────────────────────────┐
+---------------------------------
 │ 🖥 Console UI                 │
-├──────────────────────────────┤
+---------------------------------
 │ ⚙ Application Logic           │
-├──────────────────────────────┤
+|-------------------------------|
 │ 📦 Quantity Domain            │
 │   • Quantity Class            │
 │   • LengthUnit Enum           │
-├──────────────────────────────┤
+|-------------------------------|
 │ 🔧 Core                       │
-└──────────────────────────────┘
+---------------------------------
 ```
 
 ## Principle Applied
@@ -205,7 +205,7 @@ git clone https://github.com/lavanyaamehrotra/QuantityMeasurementApp.git
 cd QuantityMeasurementApp
 ## 🏗 Build
 dotnet build
-##▶ Run
+## ▶ Run
 dotnet run
 
 ## 🎮 Usage Guide
