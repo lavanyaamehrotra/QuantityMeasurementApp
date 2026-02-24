@@ -224,6 +224,27 @@ dotnet run
 | 🔄 Conversion       | ✅        |
 | ⚖ Equality          | ✅        |
 
+## 🖥 Console UI Menu
+
+```text
++------------------------------------------------------+
+|                Quantity Measurement App              |
++------------------------------------------------------+
+|                                                      |
+|  1. UC1 - Feet Equality                              |
+|  2. UC2 - Feet & Inches Equality                     |
+|  3. UC3 - Generic Length (Generics)                  |
+|  4. UC4 - Extended Unit Support                      |
+|  5. UC5 - Unit Conversion                            |
+|  6. UC6 - Addition of Two Length Units               |
+|  7. UC7 - Addition With Target                       |
+|  8. UC8 - Refactoring Unit Enum Standalone           |
+|  9. Exit                                             |
+|                                                      |
++------------------------------------------------------+
+
+```
+
 ## Project Structure 
 ```text
 QuantityMeasurementApp/
