@@ -1,4 +1,4 @@
-# 📏 Quantity Measurement Application (UC1 – UC7)
+# 📏 Quantity Measurement Application 
 
 A progressive **.NET Console Application** for performing measurement comparison, conversion, and arithmetic operations across **Length measurements**.  
 This project demonstrates incremental software development using clean architecture and SOLID principles.
@@ -49,10 +49,10 @@ bool areEqual = feet1.Equals(feet2); // true
 
 ```
 ## ✨ Feature
-✔ Value-based equality
-✔ Proper null handling
-✔ Reflexive, symmetric & transitive comparison
-✔ Foundation for future measurements
+* ✔ Value-based equality
+* ✔ Proper null handling
+* ✔ Reflexive, symmetric & transitive comparison
+* ✔ Foundation for future measurements
 
 ## ✅ UC2: Inch Measurement Equality 📏
 
@@ -106,9 +106,9 @@ public enum LengthUnit
 }
 ```
 ## ✨ Features
-✔ Yard support
-✔ Centimeter support
-✔ Cross-unit comparison
+* ✔ Yard support
+* ✔ Centimeter support
+* ✔ Cross-unit comparison
 
 | Unit | Conversion   |
 | ---- | ------------ |
