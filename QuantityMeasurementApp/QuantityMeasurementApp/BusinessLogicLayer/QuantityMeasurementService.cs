@@ -244,5 +244,91 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
             }
             return $"Measurement Difference: {difference} {unit}\nMeasurements differ significantly.";
         }
+        // ================= UC10 - Generic Quantity<U> Methods =================
+
+        /// <summary>
+        /// UC10: Creates a validated generic Quantity for any IMeasurable unit type.
+        /// </summary>
+        public Quantity<U> CreateGenericQuantity<U>(double value, U unit) where U : class, IMeasurable
+        {
+            if (unit == null)
+                throw new ArgumentException("Unit cannot be null.");
+            if (!double.IsFinite(value))
+                throw new ArgumentException("Invalid input: Value must be finite (not NaN or Infinity).");
+
+            Quantity<U> quantity = new Quantity<U>(value, unit);
+            logger.Log($"Created Quantity({value}, {unit.GetUnitName()})");
+            return quantity;
+        }
+
+        /// <summary>
+        /// UC10: Compares two generic Quantity instances of the same unit type.
+        /// </summary>
+        public bool CompareGenericQuantity<U>(Quantity<U> q1, Quantity<U> q2) where U : class, IMeasurable
+        {
+            if (q1 == null || q2 == null)
+                throw new ArgumentNullException("Quantities cannot be null.");
+
+            bool result = q1.Equals(q2);
+            logger.Log($"Compared {q1} and {q2} -> Equality Result: {result}");
+            return result;
+        }
+
+        /// <summary>
+        /// UC10: Converts a generic Quantity to the specified target unit.
+        /// </summary>
+        public Quantity<U> ConvertGenericQuantity<U>(Quantity<U> quantity, U targetUnit) where U : class, IMeasurable
+        {
+            if (quantity == null)
+                throw new ArgumentNullException(nameof(quantity), "Quantity cannot be null.");
+            if (targetUnit == null)
+                throw new ArgumentException("Target unit cannot be null.");
+
+            Quantity<U> result = quantity.ConvertTo(targetUnit);
+            logger.Log($"Converted {quantity} -> {result}");
+            return result;
+        }
+
+        /// <summary>
+        /// UC10: Adds two generic Quantity instances. Result is in unit of first operand.
+        /// </summary>
+        public Quantity<U> AddGenericQuantity<U>(Quantity<U> q1, Quantity<U> q2) where U : class, IMeasurable
+        {
+            if (q1 == null || q2 == null)
+                throw new ArgumentNullException("Quantities cannot be null.");
+
+            Quantity<U> result = q1.Add(q2);
+            logger.Log($"Added {q1} + {q2} -> {result}");
+            return result;
+        }
+
+        /// <summary>
+        /// UC10: Adds two generic Quantity instances. Result is in specified target unit.
+        /// </summary>
+        public Quantity<U> AddGenericQuantity<U>(Quantity<U> q1, Quantity<U> q2, U targetUnit) where U : class, IMeasurable
+        {
+            if (q1 == null || q2 == null)
+                throw new ArgumentNullException("Quantities cannot be null.");
+            if (targetUnit == null)
+                throw new ArgumentException("Target unit cannot be null.");
+
+            Quantity<U> result = q1.Add(q2, targetUnit);
+            logger.Log($"Added {q1} + {q2} -> {result} (target: {targetUnit.GetUnitName()})");
+            return result;
+        }
+
+        /// <summary>
+        /// UC10: Cross-category equality check — always false by design (type-safe prevention).
+        /// Routed through BLL so Presentation Layer never calls .Equals() directly.
+        /// </summary>
+        public bool CheckCrossCategory<U1, U2>(Quantity<U1> q1, Quantity<U2> q2)
+            where U1 : class, IMeasurable
+            where U2 : class, IMeasurable
+        {
+            // Different generic type parameters mean different categories — never equal
+            bool result = q1.Equals(q2);
+            logger.Log($"Cross-category check: {q1.GetType().Name} vs {q2.GetType().Name} -> {result}");
+            return result;
+        }
     }
 }
