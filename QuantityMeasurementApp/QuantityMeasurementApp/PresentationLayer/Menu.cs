@@ -326,38 +326,22 @@ namespace QuantityMeasurementApp.PresentationLayer
                 Console.Write("Enter unit (feet/inch/yard/cm): ");
                 LengthUnit unit2 = ParseUnit(Console.ReadLine());
 
-                // Create quantities
-                var q1 = new QuantityLength(value1, unit1);
-                var q2 = new QuantityLength(value2, unit2);
+                // Create quantities via service — validation and logging happen here
+                var q1 = service.CreateQuantity(value1, unit1);
+                var q2 = service.CreateQuantity(value2, unit2);
 
-                // Equality comparison
-                bool result = q1.Equals(q2);
+                // Equality comparison via service
+                bool result = service.CompareQuantity(q1, q2);
 
                 Console.WriteLine("\n+------------------------------------------+");
                 Console.WriteLine($"|        Result : Equal ({result})          |");
                 Console.WriteLine("+------------------------------------------+");
 
                 // ================= EXTRA FEATURE (UC4) =================
-                // Convert both values into FEET
-                double value1InFeet = q1.ConvertToFeet();
-                double value2InFeet = q2.ConvertToFeet();
+                double value1InFeet = service.ConvertLength(value1, unit1, LengthUnit.FEET);
+                double value2InFeet = service.ConvertLength(value2, unit2, LengthUnit.FEET);
 
-                double difference = Math.Abs(value1InFeet - value2InFeet);
-
-                Console.WriteLine("\nMeasurement Difference: " + difference + " ft");
-
-                if (difference == 0)
-                {
-                    Console.WriteLine("Both measurements are exactly identical.");
-                }
-                else if (difference < 1)
-                {
-                    Console.WriteLine("Measurements are very close.");
-                }
-                else
-                {
-                    Console.WriteLine("Measurements differ significantly.");
-                }
+                Console.WriteLine(service.GetMeasurementAnalysis(value1InFeet, value2InFeet, "ft"));
             }
             catch (Exception ex)
             {
@@ -426,12 +410,12 @@ namespace QuantityMeasurementApp.PresentationLayer
                 Console.WriteLine("+------------------------------------------+");
 
                 // ===== EXTRA FEATURE (UC5) =====
-                // Instance conversion - method overload demonstration
-                var quantity = new QuantityLength(value, fromUnit);
-                var convertedQuantity = quantity.ConvertTo(toUnit);
+                // Instance conversion via service
+                var quantity = service.CreateQuantity(value, fromUnit);
+                var convertedQuantity = service.ConvertLength(quantity, toUnit);
                 Console.WriteLine($"\nInstance conversion: {quantity} -> {convertedQuantity}");
 
-                double valueInFeet = quantity.ConvertToFeet();
+                double valueInFeet = service.ConvertLength(value, fromUnit, LengthUnit.FEET);
                 Console.WriteLine($"Physical length in base unit: {valueInFeet} ft");
             }
             catch (ArgumentException ex)
@@ -663,10 +647,10 @@ namespace QuantityMeasurementApp.PresentationLayer
             Console.Write("Enter second unit (kg/g/lb): ");
             WeightUnit u2 = ParseWeightUnit(Console.ReadLine());
 
-            var q1 = new QuantityWeight(v1, u1);
-            var q2 = new QuantityWeight(v2, u2);
+            var q1 = service.CreateWeight(v1, u1);
+            var q2 = service.CreateWeight(v2, u2);
 
-            bool equal = q1.Equals(q2);
+            bool equal = service.CompareWeight(q1, q2);
             Console.WriteLine($"\nEquality result: {q1} == {q2} ? {equal}");
         }
 
@@ -682,8 +666,8 @@ namespace QuantityMeasurementApp.PresentationLayer
             Console.Write("Enter target unit (kg/g/lb): ");
             WeightUnit toUnit = ParseWeightUnit(Console.ReadLine());
 
-            var q = new QuantityWeight(value, fromUnit);
-            var result = q.ConvertTo(toUnit);
+            var q = service.CreateWeight(value, fromUnit);
+            var result = service.ConvertWeight(q, toUnit);
 
             Console.WriteLine($"\nConverted: {q} -> {result}");
         }
@@ -704,10 +688,10 @@ namespace QuantityMeasurementApp.PresentationLayer
             Console.Write("Enter second unit (kg/g/lb): ");
             WeightUnit u2 = ParseWeightUnit(Console.ReadLine());
 
-            var q1 = new QuantityWeight(v1, u1);
-            var q2 = new QuantityWeight(v2, u2);
+            var q1 = service.CreateWeight(v1, u1);
+            var q2 = service.CreateWeight(v2, u2);
 
-            var result = q1.Add(q2);
+            var result = service.AddWeight(q1, q2);
             Console.WriteLine($"\nSum (implicit target = first unit): {q1} + {q2} = {result}");
         }
 
@@ -730,10 +714,10 @@ namespace QuantityMeasurementApp.PresentationLayer
             Console.Write("\nEnter target unit for result (kg/g/lb): ");
             WeightUnit targetUnit = ParseWeightUnit(Console.ReadLine());
 
-            var q1 = new QuantityWeight(v1, u1);
-            var q2 = new QuantityWeight(v2, u2);
+            var q1 = service.CreateWeight(v1, u1);
+            var q2 = service.CreateWeight(v2, u2);
 
-            var result = q1.Add(q2, targetUnit);
+            var result = service.AddWeight(q1, q2, targetUnit);
             Console.WriteLine($"\nSum (explicit target): {q1} + {q2} = {result}");
         }
 

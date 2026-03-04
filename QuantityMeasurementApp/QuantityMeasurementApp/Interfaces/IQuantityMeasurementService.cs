@@ -45,6 +45,26 @@ namespace QuantityMeasurementApp.Interfaces
         /// UC7: Adds two QuantityLength instances. Result is in specified target unit.
         /// </summary>
         QuantityLength AddLength(QuantityLength length1, QuantityLength length2, LengthUnit targetUnit);
+
+        // ================= UC9 - Weight Measurement =================
+
+        /// <summary>UC9: Validates input and creates a QuantityWeight object.</summary>
+        QuantityWeight CreateWeight(double value, WeightUnit unit);
+
+        /// <summary>UC9: Compares two weight measurements for equality.</summary>
+        bool CompareWeight(QuantityWeight w1, QuantityWeight w2);
+
+        /// <summary>UC9: Converts a weight value from one unit to another. Returns numeric result.</summary>
+        double ConvertWeight(double value, WeightUnit fromUnit, WeightUnit toUnit);
+
+        /// <summary>UC9: Converts an existing QuantityWeight to the target unit. Returns new instance.</summary>
+        QuantityWeight ConvertWeight(QuantityWeight weight, WeightUnit toUnit);
+
+        /// <summary>UC9: Adds two weights. Result is in unit of first operand.</summary>
+        QuantityWeight AddWeight(QuantityWeight w1, QuantityWeight w2);
+
+        /// <summary>UC9: Adds two weights. Result is in specified target unit.</summary>
+        QuantityWeight AddWeight(QuantityWeight w1, QuantityWeight w2, WeightUnit targetUnit);
     }
     
 }

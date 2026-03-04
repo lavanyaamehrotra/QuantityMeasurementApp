@@ -105,20 +105,38 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
             logger.Log($"Compared {i1} and {i2} -> Equality Result: {result}");
             return result;
         }
-        // ================= UC3 =================
+        // ================= UC3 / UC4 - QuantityLength =================
 
-        // Creates generic quantity
+        // Creates generic quantity — used by UC3 (feet/inch) and UC4 (yard/cm)
+        // FIX: Was only checking value < 0. Now has full validation matching UC1/UC2.
         public QuantityLength CreateQuantity(double value, LengthUnit unit)
         {
+            // ================= INVALID NUMBER CHECK =================
+            if (double.IsNaN(value))
+                throw new ArgumentException("Invalid input: Value cannot be NaN.");
+            if (double.IsInfinity(value))
+                throw new ArgumentException("Invalid input: Infinite values are not allowed.");
+            // ================= NEGATIVE VALUE CHECK =================
             if (value < 0)
-                throw new ArgumentException("Negative values not allowed.");
+                throw new ArgumentException("Invalid input: Negative values are not allowed.");
+            // ================= LARGE VALUE CHECK =================
+            // Convert to feet first so the limit applies correctly for any unit (cm, yard, etc.)
+            double valueInFeet = Math.Abs(value * unit.ToFeetFactor());
+            if (valueInFeet > MAX_FEET_VALUE)
+                throw new ArgumentException($"Invalid input: Value exceeds maximum allowed limit ({MAX_FEET_VALUE} ft equivalent).");
+            // ================= ZERO WARNING =================
+            if (value == 0)
+                logger.Log("Warning: Zero measurement entered.");
 
             return new QuantityLength(value, unit);
         }
 
-        // Compare generic quantities
+        // Compare generic quantities — null-safe
         public bool CompareQuantity(QuantityLength q1, QuantityLength q2)
         {
+            if (q1 == null || q2 == null)
+                throw new ArgumentNullException("QuantityLength values cannot be null.");
+
             bool result = q1.Equals(q2);
             logger.Log($"Compared {q1} and {q2} -> Equality Result: {result}");
             return result;
@@ -128,21 +146,30 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
 
         public QuantityWeight CreateWeight(double value, WeightUnit unit)
         {
+            // ================= INVALID NUMBER CHECK =================
             if (double.IsNaN(value))
                 throw new ArgumentException("Invalid input: Value cannot be NaN.");
             if (double.IsInfinity(value))
                 throw new ArgumentException("Invalid input: Infinite values are not allowed.");
-
-            // allow negative weights (e.g., deltas) for UC9 tests
-            double absKg = Math.Abs(unit.ConvertToBaseUnit(value));
-            if (absKg > MAX_KG_VALUE)
-                throw new ArgumentException($"Invalid input: Value exceeds maximum allowed weight ({MAX_KG_VALUE} kg).");
+            // ================= NEGATIVE VALUE CHECK =================
+            if (value < 0)
+                throw new ArgumentException("Invalid input: Negative values are not allowed.");
+            // ================= LARGE VALUE CHECK =================
+            double valueInKg = value * unit.GetConversionFactor();
+            if (valueInKg > MAX_KG_VALUE)
+                throw new ArgumentException($"Invalid input: Value exceeds maximum allowed weight ({MAX_KG_VALUE} kg equivalent).");
+            // ================= ZERO WARNING =================
+            if (value == 0)
+                logger.Log("Warning: Zero measurement entered.");
 
             return new QuantityWeight(value, unit);
         }
 
         public bool CompareWeight(QuantityWeight w1, QuantityWeight w2)
         {
+            if (w1 == null || w2 == null)
+                throw new ArgumentNullException("QuantityWeight values cannot be null.");
+
             bool result = w1.Equals(w2);
             logger.Log($"Compared {w1} and {w2} -> Equality Result: {result}");
             return result;
@@ -161,6 +188,9 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
 
         public QuantityWeight ConvertWeight(QuantityWeight weight, WeightUnit toUnit)
         {
+            if (weight == null)
+                throw new ArgumentNullException("QuantityWeight cannot be null.");
+
             QuantityWeight converted = weight.ConvertTo(toUnit);
             logger.Log($"Converted {weight} -> {converted}");
             return converted;
@@ -168,6 +198,9 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
 
         public QuantityWeight AddWeight(QuantityWeight w1, QuantityWeight w2)
         {
+            if (w1 == null || w2 == null)
+                throw new ArgumentNullException("QuantityWeight values cannot be null.");
+
             QuantityWeight result = w1.Add(w2);
             logger.Log($"Added {w1} + {w2} -> {result}");
             return result;
@@ -175,6 +208,9 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
 
         public QuantityWeight AddWeight(QuantityWeight w1, QuantityWeight w2, WeightUnit targetUnit)
         {
+            if (w1 == null || w2 == null)
+                throw new ArgumentNullException("QuantityWeight values cannot be null.");
+
             QuantityWeight result = w1.Add(w2, targetUnit);
             logger.Log($"Added {w1} + {w2} -> {result} (target: {targetUnit})");
             return result;
@@ -199,10 +235,13 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
         }
 
         /// <summary>
-        /// UC5: Converts existing QuantityLength to target unit. Returns new instance (immutable).
+        /// UC5: Converts existing QuantityLength to target unit. Returns new instance (immutable). Null-safe.
         /// </summary>
         public QuantityLength ConvertLength(QuantityLength length, LengthUnit toUnit)
         {
+            if (length == null)
+                throw new ArgumentNullException("QuantityLength cannot be null.");
+
             QuantityLength converted = length.ConvertTo(toUnit);
             logger.Log($"Converted {length} -> {converted}");
             return converted;
@@ -211,20 +250,26 @@ namespace QuantityMeasurementApp.BusinessLogicLayer
         // ================= UC6 - Addition =================
 
         /// <summary>
-        /// UC6: Adds two QuantityLength instances. Result is in unit of first operand.
+        /// UC6: Adds two QuantityLength instances. Result is in unit of first operand. Null-safe.
         /// </summary>
         public QuantityLength AddLength(QuantityLength length1, QuantityLength length2)
         {
+            if (length1 == null || length2 == null)
+                throw new ArgumentNullException("QuantityLength values cannot be null.");
+
             QuantityLength result = length1.Add(length2);
             logger.Log($"Added {length1} + {length2} -> {result}");
             return result;
         }
 
         /// <summary>
-        /// UC7: Adds two QuantityLength instances. Result is in specified target unit.
+        /// UC7: Adds two QuantityLength instances. Result is in specified target unit. Null-safe.
         /// </summary>
         public QuantityLength AddLength(QuantityLength length1, QuantityLength length2, LengthUnit targetUnit)
         {
+            if (length1 == null || length2 == null)
+                throw new ArgumentNullException("QuantityLength values cannot be null.");
+
             QuantityLength result = length1.Add(length2, targetUnit);
             logger.Log($"Added {length1} + {length2} -> {result} (target: {targetUnit})");
             return result;
