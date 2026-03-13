@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QuantityMeasurementModel.Entities;
+using QuantityMeasurementBusinessLayer.Service;
 
 
 namespace QuantityMeasurementApp.Tests
@@ -17,8 +18,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_YardToYard_SameValue()
         {
-            var q1 = new QuantityLength(1.0, LengthUnit.YARD);
-            var q2 = new QuantityLength(1.0, LengthUnit.YARD);
+            var q1 = new QuantityLength(1.0, LengthEnum.YARD);
+            var q2 = new QuantityLength(1.0, LengthEnum.YARD);
 
             Assert.IsTrue(q1.Equals(q2));
         }
@@ -27,8 +28,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_YardToYard_DifferentValue()
         {
-            var q1 = new QuantityLength(1.0, LengthUnit.YARD);
-            var q2 = new QuantityLength(2.0, LengthUnit.YARD);
+            var q1 = new QuantityLength(1.0, LengthEnum.YARD);
+            var q2 = new QuantityLength(2.0, LengthEnum.YARD);
 
             Assert.IsFalse(q1.Equals(q2));
         }
@@ -37,8 +38,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_YardToFeet_EquivalentValue()
         {
-            var yard = new QuantityLength(1.0, LengthUnit.YARD);
-            var feet = new QuantityLength(3.0, LengthUnit.FEET);
+            var yard = new QuantityLength(1.0, LengthEnum.YARD);
+            var feet = new QuantityLength(3.0, LengthEnum.FEET);
 
             Assert.IsTrue(yard.Equals(feet));
         }
@@ -47,8 +48,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_FeetToYard_EquivalentValue()
         {
-            var feet = new QuantityLength(3.0, LengthUnit.FEET);
-            var yard = new QuantityLength(1.0, LengthUnit.YARD);
+            var feet = new QuantityLength(3.0, LengthEnum.FEET);
+            var yard = new QuantityLength(1.0, LengthEnum.YARD);
 
             Assert.IsTrue(feet.Equals(yard));
         }
@@ -57,8 +58,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_YardToInches_EquivalentValue()
         {
-            var yard = new QuantityLength(1.0, LengthUnit.YARD);
-            var inches = new QuantityLength(36.0, LengthUnit.INCH);
+            var yard = new QuantityLength(1.0, LengthEnum.YARD);
+            var inches = new QuantityLength(36.0, LengthEnum.INCH);
 
             Assert.IsTrue(yard.Equals(inches));
         }
@@ -67,8 +68,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_InchesToYard_EquivalentValue()
         {
-            var inches = new QuantityLength(36.0, LengthUnit.INCH);
-            var yard = new QuantityLength(1.0, LengthUnit.YARD);
+            var inches = new QuantityLength(36.0, LengthEnum.INCH);
+            var yard = new QuantityLength(1.0, LengthEnum.YARD);
 
             Assert.IsTrue(inches.Equals(yard));
         }
@@ -77,8 +78,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_YardToFeet_NonEquivalentValue()
         {
-            var yard = new QuantityLength(1.0, LengthUnit.YARD);
-            var feet = new QuantityLength(2.0, LengthUnit.FEET);
+            var yard = new QuantityLength(1.0, LengthEnum.YARD);
+            var feet = new QuantityLength(2.0, LengthEnum.FEET);
 
             Assert.IsFalse(yard.Equals(feet));
         }
@@ -87,8 +88,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_centimetersToInches_EquivalentValue()
         {
-            var cm = new QuantityLength(1.0, LengthUnit.CENTIMETER);
-            var inch = new QuantityLength(0.393701, LengthUnit.INCH);
+            var cm = new QuantityLength(1.0, LengthEnum.CENTIMETER);
+            var inch = new QuantityLength(0.393701, LengthEnum.INCH);
 
             Assert.IsTrue(cm.Equals(inch));
         }
@@ -97,8 +98,8 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_centimetersToFeet_NonEquivalentValue()
         {
-            var cm = new QuantityLength(1.0, LengthUnit.CENTIMETER);
-            var feet = new QuantityLength(1.0, LengthUnit.FEET);
+            var cm = new QuantityLength(1.0, LengthEnum.CENTIMETER);
+            var feet = new QuantityLength(1.0, LengthEnum.FEET);
 
             Assert.IsFalse(cm.Equals(feet));
         }
@@ -107,9 +108,9 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_MultiUnit_TransitiveProperty()
         {
-            var yard = new QuantityLength(1.0, LengthUnit.YARD);
-            var feet = new QuantityLength(3.0, LengthUnit.FEET);
-            var inches = new QuantityLength(36.0, LengthUnit.INCH);
+            var yard = new QuantityLength(1.0, LengthEnum.YARD);
+            var feet = new QuantityLength(3.0, LengthEnum.FEET);
+            var inches = new QuantityLength(36.0, LengthEnum.INCH);
 
             Assert.IsTrue(yard.Equals(feet));
             Assert.IsTrue(feet.Equals(inches));
@@ -122,7 +123,7 @@ namespace QuantityMeasurementApp.Tests
         {
             Assert.Throws<System.ArgumentException>(() =>
             {
-                new QuantityLength(1.0, (LengthUnit)(-1));
+                new QuantityLength(1.0, (LengthEnum)(-1));
             });
         }
 
@@ -130,7 +131,7 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_YardSameReference()
         {
-            var yard = new QuantityLength(2.0, LengthUnit.YARD);
+            var yard = new QuantityLength(2.0, LengthEnum.YARD);
 
             Assert.IsTrue(yard.Equals(yard));
         }
@@ -139,7 +140,7 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_YardNullComparison()
         {
-            var yard = new QuantityLength(1.0, LengthUnit.YARD);
+            var yard = new QuantityLength(1.0, LengthEnum.YARD);
 
             Assert.IsFalse(yard.Equals(null));
         }
@@ -150,7 +151,7 @@ namespace QuantityMeasurementApp.Tests
         {
             Assert.Throws<System.ArgumentException>(() =>
             {
-                new QuantityLength(2.0, (LengthUnit)(-1));
+                new QuantityLength(2.0, (LengthEnum)(-1));
             });
         }
 
@@ -158,7 +159,7 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_CentimetersSameReference()
         {
-            var cm = new QuantityLength(5.0, LengthUnit.CENTIMETER);
+            var cm = new QuantityLength(5.0, LengthEnum.CENTIMETER);
 
             Assert.IsTrue(cm.Equals(cm));
         }
@@ -167,7 +168,7 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_CentimetersNullComparison()
         {
-            var cm = new QuantityLength(1.0, LengthUnit.CENTIMETER);
+            var cm = new QuantityLength(1.0, LengthEnum.CENTIMETER);
 
             Assert.IsFalse(cm.Equals(null));
         }
@@ -176,9 +177,9 @@ namespace QuantityMeasurementApp.Tests
         [TestMethod]
         public void testEquality_AllUnits_ComplexScenario()
         {
-            var yard = new QuantityLength(2.0, LengthUnit.YARD);
-            var feet = new QuantityLength(6.0, LengthUnit.FEET);
-            var inches = new QuantityLength(72.0, LengthUnit.INCH);
+            var yard = new QuantityLength(2.0, LengthEnum.YARD);
+            var feet = new QuantityLength(6.0, LengthEnum.FEET);
+            var inches = new QuantityLength(72.0, LengthEnum.INCH);
 
             Assert.IsTrue(yard.Equals(feet));
             Assert.IsTrue(feet.Equals(inches));

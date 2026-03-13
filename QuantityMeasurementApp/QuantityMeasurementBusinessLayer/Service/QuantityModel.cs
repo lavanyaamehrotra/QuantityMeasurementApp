@@ -1,5 +1,4 @@
-using QuantityMeasurementModel.Interfaces;
-namespace QuantityMeasurementModel
+namespace QuantityMeasurementBusinessLayer
 {
     /// <summary>
     /// UC15: Internal model class used within the Service Layer.
