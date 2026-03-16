@@ -1,0 +1,78 @@
+[
+  {
+    "OperationType": "CONVERT",
+    "Timestamp": "2026-03-14T16:02:17.5721559Z",
+    "HasError": false,
+    "ErrorMessage": "",
+    "Operand1": {
+      "Value": 23,
+      "UnitName": "FT",
+      "Category": "LENGTH"
+    },
+    "Operand2": null,
+    "Result": {
+      "Value": 7.67,
+      "UnitName": "YARDS",
+      "Category": "LENGTH"
+    }
+  },
+  {
+    "OperationType": "SUBTRACT",
+    "Timestamp": "2026-03-14T16:02:17.5722298Z",
+    "HasError": false,
+    "ErrorMessage": "",
+    "Operand1": {
+      "Value": 23,
+      "UnitName": "FT",
+      "Category": "LENGTH"
+    },
+    "Operand2": {
+      "Value": 67,
+      "UnitName": "IN",
+      "Category": "LENGTH"
+    },
+    "Result": {
+      "Value": 17.42,
+      "UnitName": "FEET",
+      "Category": "LENGTH"
+    }
+  },
+  {
+    "OperationType": "ADD",
+    "Timestamp": "2026-03-14T16:02:17.5722304Z",
+    "HasError": false,
+    "ErrorMessage": "",
+    "Operand1": {
+      "Value": 23,
+      "UnitName": "KG",
+      "Category": "WEIGHT"
+    },
+    "Operand2": {
+      "Value": 45,
+      "UnitName": "G",
+      "Category": "WEIGHT"
+    },
+    "Result": {
+      "Value": 23.05,
+      "UnitName": "KILOGRAM",
+      "Category": "WEIGHT"
+    }
+  },
+  {
+    "OperationType": "ADD",
+    "Timestamp": "2026-03-14T16:03:56.1852317Z",
+    "HasError": true,
+    "ErrorMessage": "Temperature does not support Add.",
+    "Operand1": {
+      "Value": 23,
+      "UnitName": "C",
+      "Category": "TEMPERATURE"
+    },
+    "Operand2": {
+      "Value": 56,
+      "UnitName": "F",
+      "Category": "TEMPERATURE"
+    },
+    "Result": null
+  }
+]
