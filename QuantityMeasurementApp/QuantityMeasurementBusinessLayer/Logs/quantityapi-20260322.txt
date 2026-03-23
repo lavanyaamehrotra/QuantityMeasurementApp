@@ -1,0 +1,1022 @@
+2026-03-22 01:46:40.736 +05:30 [INF] Checking/applying EF Core migrations to SQL Server...
+2026-03-22 01:46:42.365 +05:30 [INF] Executed DbCommand (74ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-22 01:46:42.485 +05:30 [INF] Executed DbCommand (80ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 01:46:42.496 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-22 01:46:42.508 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 01:46:42.641 +05:30 [INF] Executed DbCommand (93ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-22 01:46:42.690 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-22 01:46:42.694 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-22 01:46:42.899 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 01:46:42.901 +05:30 [INF] === Health   → http://localhost:5000/health  ===
+2026-03-22 01:46:42.902 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 01:46:48.461 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 153.1079 ms
+2026-03-22 01:46:48.545 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 5.6657 ms
+2026-03-22 01:46:48.890 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 180.8164 ms
+2026-03-22 01:47:31.194 +05:30 [INF] [UserController] Register: Khushi
+2026-03-22 01:47:31.223 +05:30 [INF] [AuthService] Register attempt: Khushi
+2026-03-22 01:47:32.406 +05:30 [INF] Executed DbCommand (312ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 01:47:32.549 +05:30 [INF] Executed DbCommand (54ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 01:47:33.984 +05:30 [INF] Executed DbCommand (66ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (DbType = Boolean), @p3='?' (Size = 256), @p4='?' (Size = 512), @p5='?' (DbType = DateTime2), @p6='?' (Size = 50), @p7='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([created_at], [email], [is_active], [password_hash], [refresh_token], [refresh_token_expiry], [role], [username])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-03-22 01:47:34.050 +05:30 [INF] [UserRepository] User registered: Id=2 Username=Khushi
+2026-03-22 01:47:34.055 +05:30 [INF] [AuthService] Registered UserId=2
+2026-03-22 01:47:34.222 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 01:47:34.304 +05:30 [INF] HTTP POST /api/v1/users/register → 201 in 3822.0153 ms
+2026-03-22 01:47:53.144 +05:30 [INF] [UserController] Login: Khushi
+2026-03-22 01:47:53.151 +05:30 [INF] [AuthService] Login attempt: Khushi
+2026-03-22 01:47:53.433 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[username] = @__username_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-03-22 01:47:53.934 +05:30 [INF] [AuthService] Login success: UserId=2
+2026-03-22 01:47:53.947 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 01:47:53.954 +05:30 [INF] HTTP POST /api/v1/users/login → 200 in 834.5551 ms
+2026-03-22 01:48:41.146 +05:30 [INF] [QuantityMeasurementService] Convert 2YARDS → CENTIMETERS
+2026-03-22 01:48:41.324 +05:30 [INF] Executed DbCommand (57ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-03-22 01:48:41.345 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-03-22 01:48:41.384 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 413.2871 ms
+2026-03-22 16:54:31.570 +05:30 [INF] Checking/applying EF Core migrations to SQL Server...
+2026-03-22 16:54:33.127 +05:30 [INF] Executed DbCommand (56ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-22 16:54:33.222 +05:30 [INF] Executed DbCommand (71ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 16:54:33.232 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-22 16:54:33.237 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 16:54:33.371 +05:30 [INF] Executed DbCommand (105ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-22 16:54:33.401 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-22 16:54:33.403 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-22 16:54:33.583 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 16:54:33.584 +05:30 [INF] === Health   → http://localhost:5000/health  ===
+2026-03-22 16:54:33.585 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:11:15.840 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 22:11:15.857 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:11:16.069 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 69.8074 ms
+2026-03-22 22:11:16.330 +05:30 [INF] [API] Compare
+2026-03-22 22:11:16.333 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:16.738 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:16.741 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:16.751 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 627.6187 ms
+2026-03-22 22:11:16.764 +05:30 [INF] [QuantityMeasurementService] Convert 1FEET → INCHES
+2026-03-22 22:11:16.782 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:16.783 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-03-22 22:11:16.783 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 25.6379 ms
+2026-03-22 22:11:16.802 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:16.803 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:11:16.803 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 17.5023 ms
+2026-03-22 22:11:16.821 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 16.5711 ms
+2026-03-22 22:11:16.833 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ → 404 in 0.6340 ms
+2026-03-22 22:11:16.835 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 0.1929 ms
+2026-03-22 22:11:16.905 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 69.2563 ms
+2026-03-22 22:11:16.931 +05:30 [INF] [API] Compare
+2026-03-22 22:11:16.931 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:16.932 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:16.932 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:16.932 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.3295 ms
+2026-03-22 22:11:17.065 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 132.6316 ms
+2026-03-22 22:11:17.068 +05:30 [INF] HTTP GET /health → 404 in 0.1575 ms
+2026-03-22 22:11:17.069 +05:30 [INF] HTTP GET /actuator/metrics → 404 in 0.0957 ms
+2026-03-22 22:11:17.071 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.071 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:11:17.071 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 0.9589 ms
+2026-03-22 22:11:17.075 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ADD → 200 in 3.2838 ms
+2026-03-22 22:11:17.087 +05:30 [INF] HTTP GET /api/v1/quantities/history/type/LENGTH → 200 in 9.0101 ms
+2026-03-22 22:11:17.088 +05:30 [INF] [API] Compare
+2026-03-22 22:11:17.088 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 1FEET
+2026-03-22 22:11:17.089 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.089 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:17.089 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 0.9973 ms
+2026-03-22 22:11:17.101 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 11.5133 ms
+2026-03-22 22:11:17.103 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 0.3747 ms
+2026-03-22 22:11:17.104 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 0.6194 ms
+2026-03-22 22:11:17.112 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 5.7475 ms
+2026-03-22 22:11:17.114 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 0.6964 ms
+2026-03-22 22:11:17.117 +05:30 [INF] [API] Compare
+2026-03-22 22:11:17.118 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:17.118 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.118 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:17.118 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 0.9954 ms
+2026-03-22 22:11:17.119 +05:30 [INF] [API] Compare
+2026-03-22 22:11:17.119 +05:30 [INF] [QuantityMeasurementService] Compare 2FEET vs 2FEET
+2026-03-22 22:11:17.120 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.120 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:17.120 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 0.8079 ms
+2026-03-22 22:11:17.121 +05:30 [INF] [API] Compare
+2026-03-22 22:11:17.121 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:17.121 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.121 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:17.122 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 0.8248 ms
+2026-03-22 22:11:17.122 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.122 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:11:17.122 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 0.6013 ms
+2026-03-22 22:11:17.123 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 0.4794 ms
+2026-03-22 22:11:17.135 +05:30 [INF] HTTP GET /api/v1/quantities/history/errored → 401 in 3.8440 ms
+2026-03-22 22:11:17.137 +05:30 [INF] [API] Compare
+2026-03-22 22:11:17.137 +05:30 [INF] [QuantityMeasurementService] Compare 5FEET vs 5FEET
+2026-03-22 22:11:17.138 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.138 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:17.138 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.0689 ms
+2026-03-22 22:11:17.139 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 0.6346 ms
+2026-03-22 22:11:17.141 +05:30 [INF] [API] Compare
+2026-03-22 22:11:17.141 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:17.141 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:17.141 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:17.142 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.2588 ms
+2026-03-22 22:11:17.144 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 0.6621 ms
+2026-03-22 22:11:17.151 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 5.5010 ms
+2026-03-22 22:11:37.732 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 22:11:37.745 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:11:37.846 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 44.3945 ms
+2026-03-22 22:11:37.970 +05:30 [INF] [API] Compare
+2026-03-22 22:11:37.972 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:38.287 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.290 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.299 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 420.3078 ms
+2026-03-22 22:11:38.309 +05:30 [INF] [QuantityMeasurementService] Convert 1FEET → INCHES
+2026-03-22 22:11:38.328 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.328 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-03-22 22:11:38.328 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 25.2091 ms
+2026-03-22 22:11:38.347 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.348 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:11:38.348 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 17.9933 ms
+2026-03-22 22:11:38.358 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 9.3371 ms
+2026-03-22 22:11:38.360 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ → 404 in 0.4015 ms
+2026-03-22 22:11:38.361 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 0.1822 ms
+2026-03-22 22:11:38.437 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 75.1548 ms
+2026-03-22 22:11:38.449 +05:30 [INF] [API] Compare
+2026-03-22 22:11:38.449 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:38.449 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.449 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.450 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.2719 ms
+2026-03-22 22:11:38.556 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 105.7491 ms
+2026-03-22 22:11:38.560 +05:30 [INF] HTTP GET /health → 404 in 0.1165 ms
+2026-03-22 22:11:38.561 +05:30 [INF] HTTP GET /actuator/metrics → 404 in 0.1639 ms
+2026-03-22 22:11:38.562 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.563 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:11:38.563 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 1.0845 ms
+2026-03-22 22:11:38.566 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ADD → 200 in 2.4988 ms
+2026-03-22 22:11:38.576 +05:30 [INF] HTTP GET /api/v1/quantities/history/type/LENGTH → 200 in 9.2461 ms
+2026-03-22 22:11:38.578 +05:30 [INF] [API] Compare
+2026-03-22 22:11:38.578 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 1FEET
+2026-03-22 22:11:38.578 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.578 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.578 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.1119 ms
+2026-03-22 22:11:38.590 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 10.6079 ms
+2026-03-22 22:11:38.593 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 1.1113 ms
+2026-03-22 22:11:38.595 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 0.8042 ms
+2026-03-22 22:11:38.599 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 2.0780 ms
+2026-03-22 22:11:38.601 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 0.6636 ms
+2026-03-22 22:11:38.604 +05:30 [INF] [API] Compare
+2026-03-22 22:11:38.604 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:38.605 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.605 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.605 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 0.9884 ms
+2026-03-22 22:11:38.606 +05:30 [INF] [API] Compare
+2026-03-22 22:11:38.606 +05:30 [INF] [QuantityMeasurementService] Compare 2FEET vs 2FEET
+2026-03-22 22:11:38.606 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.606 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.607 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 0.7794 ms
+2026-03-22 22:11:38.610 +05:30 [INF] [API] Compare
+2026-03-22 22:11:38.611 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:38.611 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.611 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.611 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.5345 ms
+2026-03-22 22:11:38.612 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.612 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:11:38.612 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 0.6838 ms
+2026-03-22 22:11:38.613 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 0.4948 ms
+2026-03-22 22:11:38.617 +05:30 [INF] HTTP GET /api/v1/quantities/history/errored → 401 in 2.9703 ms
+2026-03-22 22:11:38.626 +05:30 [INF] [API] Compare
+2026-03-22 22:11:38.626 +05:30 [INF] [QuantityMeasurementService] Compare 5FEET vs 5FEET
+2026-03-22 22:11:38.627 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.627 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.627 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.0512 ms
+2026-03-22 22:11:38.630 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 0.7739 ms
+2026-03-22 22:11:38.631 +05:30 [INF] [API] Compare
+2026-03-22 22:11:38.631 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:11:38.631 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:11:38.632 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:11:38.632 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.0725 ms
+2026-03-22 22:11:38.633 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 0.4646 ms
+2026-03-22 22:11:38.639 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 4.9214 ms
+2026-03-22 22:17:40.825 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 22:17:40.861 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:17:41.053 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 76.7231 ms
+2026-03-22 22:17:41.226 +05:30 [INF] [API] Compare
+2026-03-22 22:17:41.228 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:17:41.662 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:41.667 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:41.680 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 583.1584 ms
+2026-03-22 22:17:41.693 +05:30 [INF] [QuantityMeasurementService] Convert 1FEET → INCHES
+2026-03-22 22:17:41.715 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:41.716 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-03-22 22:17:41.716 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 29.2839 ms
+2026-03-22 22:17:41.736 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:41.736 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:17:41.737 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 17.7485 ms
+2026-03-22 22:17:41.752 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 13.7998 ms
+2026-03-22 22:17:41.753 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ → 404 in 0.3874 ms
+2026-03-22 22:17:41.755 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 0.2883 ms
+2026-03-22 22:17:41.831 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 74.9063 ms
+2026-03-22 22:17:41.852 +05:30 [INF] [API] Compare
+2026-03-22 22:17:41.853 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:17:41.853 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:41.853 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:41.854 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.8973 ms
+2026-03-22 22:17:41.972 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 116.0623 ms
+2026-03-22 22:17:41.975 +05:30 [INF] HTTP GET /health → 404 in 0.6104 ms
+2026-03-22 22:17:41.978 +05:30 [INF] HTTP GET /actuator/metrics → 404 in 0.1351 ms
+2026-03-22 22:17:41.980 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:41.981 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:17:41.981 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 1.5156 ms
+2026-03-22 22:17:41.984 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ADD → 200 in 2.8864 ms
+2026-03-22 22:17:41.996 +05:30 [INF] HTTP GET /api/v1/quantities/history/type/LENGTH → 200 in 10.8502 ms
+2026-03-22 22:17:41.999 +05:30 [INF] [API] Compare
+2026-03-22 22:17:41.999 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 1FEET
+2026-03-22 22:17:42.000 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:42.000 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:42.000 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.3300 ms
+2026-03-22 22:17:42.020 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 17.7945 ms
+2026-03-22 22:17:42.022 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 0.5675 ms
+2026-03-22 22:17:42.024 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.0293 ms
+2026-03-22 22:17:42.033 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 4.1657 ms
+2026-03-22 22:17:42.036 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.0347 ms
+2026-03-22 22:17:42.040 +05:30 [INF] [API] Compare
+2026-03-22 22:17:42.040 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:17:42.041 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:42.041 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:42.041 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.7096 ms
+2026-03-22 22:17:42.043 +05:30 [INF] [API] Compare
+2026-03-22 22:17:42.044 +05:30 [INF] [QuantityMeasurementService] Compare 2FEET vs 2FEET
+2026-03-22 22:17:42.044 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:42.044 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:42.045 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.6895 ms
+2026-03-22 22:17:42.048 +05:30 [INF] [API] Compare
+2026-03-22 22:17:42.048 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:17:42.049 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:42.049 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:42.049 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.5612 ms
+2026-03-22 22:17:42.051 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:42.051 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:17:42.051 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 1.0979 ms
+2026-03-22 22:17:42.052 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 0.8336 ms
+2026-03-22 22:17:42.059 +05:30 [INF] HTTP GET /api/v1/quantities/history/errored → 401 in 4.4822 ms
+2026-03-22 22:17:42.065 +05:30 [INF] [API] Compare
+2026-03-22 22:17:42.065 +05:30 [INF] [QuantityMeasurementService] Compare 5FEET vs 5FEET
+2026-03-22 22:17:42.065 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:42.065 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:42.066 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1.6430 ms
+2026-03-22 22:17:42.069 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.2749 ms
+2026-03-22 22:17:42.072 +05:30 [INF] [API] Compare
+2026-03-22 22:17:42.072 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:17:42.072 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:17:42.073 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:17:42.073 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.0536 ms
+2026-03-22 22:17:42.076 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 1.1711 ms
+2026-03-22 22:17:42.087 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 7.1186 ms
+2026-03-22 22:20:48.456 +05:30 [INF] Checking/applying EF Core migrations to SQL Server...
+2026-03-22 22:20:49.364 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-22 22:20:49.417 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 22:20:49.422 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-22 22:20:49.426 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 22:20:49.505 +05:30 [INF] Executed DbCommand (64ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-22 22:20:49.528 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-22 22:20:49.529 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-22 22:20:49.632 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 22:20:49.633 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:20:56.350 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 154.2161 ms
+2026-03-22 22:20:56.567 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 2.5566 ms
+2026-03-22 22:20:57.107 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 244.3548 ms
+2026-03-22 22:21:36.344 +05:30 [INF] [UserController] Register: Roshni
+2026-03-22 22:21:36.350 +05:30 [INF] [AuthService] Register attempt: Roshni
+2026-03-22 22:22:11.534 +05:30 [ERR] Failed executing DbCommand (34,774ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 22:22:11.566 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'QuantityMeasurementRepository.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:af1856c4-b15d-44e8-a0a6-ed5700014295
+Error Number:-2,State:0,Class:11
+Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:af1856c4-b15d-44e8-a0a6-ed5700014295
+Error Number:-2,State:0,Class:11
+2026-03-22 22:22:11.590 +05:30 [ERR] HTTP POST /api/v1/users/register → 500 in 35417.2667 ms
+Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at QuantityMeasurementRepository.Repositories.UserRepository.UsernameExistsAsync(String username) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementRepository\Repositories\UserRepository.cs:line 55
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 49
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+ClientConnectionId:af1856c4-b15d-44e8-a0a6-ed5700014295
+Error Number:-2,State:0,Class:11
+2026-03-22 22:22:11.687 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at QuantityMeasurementRepository.Repositories.UserRepository.UsernameExistsAsync(String username) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementRepository\Repositories\UserRepository.cs:line 55
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 49
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:af1856c4-b15d-44e8-a0a6-ed5700014295
+Error Number:-2,State:0,Class:11
+2026-03-22 22:22:11.725 +05:30 [ERR] [GlobalExceptionHandler] 500 | Microsoft.Data.SqlClient.SqlException | [SqlException] Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding. → [Win32Exception] The wait operation timed out. | POST /api/v1/users/register
+Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at QuantityMeasurementRepository.Repositories.UserRepository.UsernameExistsAsync(String username) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementRepository\Repositories\UserRepository.cs:line 55
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 49
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:af1856c4-b15d-44e8-a0a6-ed5700014295
+Error Number:-2,State:0,Class:11
+2026-03-22 22:35:11.257 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 22:35:11.310 +05:30 [INF] === Health   → http://localhost:5000/health (liveness, no DB) ===
+2026-03-22 22:35:11.311 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:35:11.728 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 164.5939 ms
+2026-03-22 22:35:12.130 +05:30 [INF] [API] Compare
+2026-03-22 22:35:12.135 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:35:13.016 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.023 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.044 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 1232.3162 ms
+2026-03-22 22:35:13.069 +05:30 [INF] [QuantityMeasurementService] Convert 1FEET → INCHES
+2026-03-22 22:35:13.108 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.108 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-03-22 22:35:13.109 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 52.4195 ms
+2026-03-22 22:35:13.175 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.175 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:35:13.176 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 61.6861 ms
+2026-03-22 22:35:13.204 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 24.9196 ms
+2026-03-22 22:35:13.207 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ → 404 in 0.9506 ms
+2026-03-22 22:35:13.210 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 0.6998 ms
+2026-03-22 22:35:13.357 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 144.6006 ms
+2026-03-22 22:35:13.410 +05:30 [INF] [API] Compare
+2026-03-22 22:35:13.410 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:35:13.411 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.411 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.412 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.5484 ms
+2026-03-22 22:35:13.634 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 220.1034 ms
+2026-03-22 22:35:13.660 +05:30 [INF] HTTP GET /health → 200 in 24.2163 ms
+2026-03-22 22:35:13.663 +05:30 [INF] HTTP GET /actuator/metrics → 404 in 0.3088 ms
+2026-03-22 22:35:13.667 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.667 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:35:13.667 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 1.8097 ms
+2026-03-22 22:35:13.673 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ADD → 200 in 5.0437 ms
+2026-03-22 22:35:13.694 +05:30 [INF] HTTP GET /api/v1/quantities/history/type/LENGTH → 200 in 19.7070 ms
+2026-03-22 22:35:13.698 +05:30 [INF] [API] Compare
+2026-03-22 22:35:13.698 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 1FEET
+2026-03-22 22:35:13.699 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.699 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.700 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.1212 ms
+2026-03-22 22:35:13.729 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 23.9568 ms
+2026-03-22 22:35:13.733 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 1.0737 ms
+2026-03-22 22:35:13.738 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.9966 ms
+2026-03-22 22:35:13.747 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 6.4406 ms
+2026-03-22 22:35:13.751 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.2248 ms
+2026-03-22 22:35:13.758 +05:30 [INF] [API] Compare
+2026-03-22 22:35:13.758 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:35:13.759 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.759 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.760 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.5126 ms
+2026-03-22 22:35:13.772 +05:30 [INF] [API] Compare
+2026-03-22 22:35:13.773 +05:30 [INF] [QuantityMeasurementService] Compare 2FEET vs 2FEET
+2026-03-22 22:35:13.773 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.773 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.774 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 10.8826 ms
+2026-03-22 22:35:13.777 +05:30 [INF] [API] Compare
+2026-03-22 22:35:13.777 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:35:13.777 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.778 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.778 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.2261 ms
+2026-03-22 22:35:13.781 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.781 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 22:35:13.782 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 2.1855 ms
+2026-03-22 22:35:13.784 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 1.2888 ms
+2026-03-22 22:35:13.795 +05:30 [INF] HTTP GET /api/v1/quantities/history/errored → 401 in 7.1219 ms
+2026-03-22 22:35:13.799 +05:30 [INF] [API] Compare
+2026-03-22 22:35:13.799 +05:30 [INF] [QuantityMeasurementService] Compare 5FEET vs 5FEET
+2026-03-22 22:35:13.800 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.800 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.801 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 2.4599 ms
+2026-03-22 22:35:13.806 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 2.2037 ms
+2026-03-22 22:35:13.809 +05:30 [INF] [API] Compare
+2026-03-22 22:35:13.809 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-22 22:35:13.810 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-22 22:35:13.811 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:35:13.811 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 3.0443 ms
+2026-03-22 22:35:13.814 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 1.0997 ms
+2026-03-22 22:35:13.830 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 11.2311 ms
+2026-03-22 22:35:39.212 +05:30 [INF] Checking/applying EF Core migrations to SQL Server...
+2026-03-22 22:35:42.363 +05:30 [INF] Executed DbCommand (172ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE DATABASE [QuantityMeasurementDB];
+2026-03-22 22:35:42.449 +05:30 [INF] Executed DbCommand (73ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [QuantityMeasurementDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2026-03-22 22:35:42.499 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+SELECT 1
+2026-03-22 22:35:42.635 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2026-03-22 22:35:42.648 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+SELECT 1
+2026-03-22 22:35:42.726 +05:30 [INF] Executed DbCommand (58ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 22:35:42.764 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-22 22:35:42.845 +05:30 [INF] Applying migration '20260321193445_InitialCreate'.
+2026-03-22 22:35:42.915 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE TABLE [users] (
+    [id] int NOT NULL IDENTITY,
+    [username] nvarchar(100) NOT NULL,
+    [email] nvarchar(200) NOT NULL,
+    [password_hash] nvarchar(256) NOT NULL,
+    [role] nvarchar(50) NOT NULL,
+    [created_at] datetime2 NOT NULL,
+    [is_active] bit NOT NULL,
+    [refresh_token] nvarchar(512) NULL,
+    [refresh_token_expiry] datetime2 NULL,
+    CONSTRAINT [PK_users] PRIMARY KEY ([id])
+);
+2026-03-22 22:35:42.924 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE TABLE [quantity_measurements] (
+    [id] int NOT NULL IDENTITY,
+    [operation] nvarchar(50) NOT NULL,
+    [timestamp] datetime2 NOT NULL,
+    [operand1_value] float NULL,
+    [operand1_unit] nvarchar(50) NULL,
+    [operand1_category] nvarchar(50) NULL,
+    [operand2_value] float NULL,
+    [operand2_unit] nvarchar(50) NULL,
+    [operand2_category] nvarchar(50) NULL,
+    [result_value] float NULL,
+    [result_unit] nvarchar(50) NULL,
+    [result_category] nvarchar(50) NULL,
+    [has_error] bit NOT NULL,
+    [error_message] nvarchar(500) NULL,
+    [user_id] int NULL,
+    CONSTRAINT [PK_quantity_measurements] PRIMARY KEY ([id]),
+    CONSTRAINT [FK_quantity_measurements_users_user_id] FOREIGN KEY ([user_id]) REFERENCES [users] ([id]) ON DELETE SET NULL
+);
+2026-03-22 22:35:42.930 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE INDEX [IX_qm_category] ON [quantity_measurements] ([operand1_category]);
+2026-03-22 22:35:42.937 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE INDEX [IX_qm_operation] ON [quantity_measurements] ([operation]);
+2026-03-22 22:35:42.942 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE INDEX [IX_quantity_measurements_user_id] ON [quantity_measurements] ([user_id]);
+2026-03-22 22:35:42.952 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE UNIQUE INDEX [IX_users_email] ON [users] ([email]);
+2026-03-22 22:35:42.961 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+CREATE UNIQUE INDEX [IX_users_username] ON [users] ([username]);
+2026-03-22 22:35:42.971 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='120']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260321193445_InitialCreate', N'8.0.0');
+2026-03-22 22:35:42.993 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-22 22:35:43.205 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 22:35:43.209 +05:30 [INF] === Health   → http://localhost:5000/health (liveness, no DB) ===
+2026-03-22 22:35:43.212 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:35:56.362 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 158.9551 ms
+2026-03-22 22:35:56.499 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 10.8828 ms
+2026-03-22 22:35:57.000 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 273.1839 ms
+2026-03-22 22:36:33.678 +05:30 [INF] [UserController] Register: RoshniSrivastava
+2026-03-22 22:36:33.688 +05:30 [INF] [AuthService] Register attempt: RoshniSrivastava
+2026-03-22 22:36:34.213 +05:30 [INF] Executed DbCommand (37ms) [Parameters=[@__username_0='?' (Size = 100), @__email_1='?' (Size = 200)], CommandType='"Text"', CommandTimeout='120']
+SELECT [u].[username] AS [Username], [u].[email] AS [Email]
+FROM [users] AS [u]
+WHERE [u].[username] = @__username_0 OR [u].[email] = @__email_1
+2026-03-22 22:36:35.171 +05:30 [INF] Executed DbCommand (41ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (DbType = Boolean), @p3='?' (Size = 256), @p4='?' (Size = 512), @p5='?' (DbType = DateTime2), @p6='?' (Size = 50), @p7='?' (Size = 100)], CommandType='"Text"', CommandTimeout='120']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([created_at], [email], [is_active], [password_hash], [refresh_token], [refresh_token_expiry], [role], [username])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-03-22 22:36:35.237 +05:30 [INF] [UserRepository] User registered: Id=1 Username=RoshniSrivastava
+2026-03-22 22:36:35.243 +05:30 [INF] [AuthService] Registered UserId=1
+2026-03-22 22:36:35.347 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='120']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 22:36:35.376 +05:30 [INF] HTTP POST /api/v1/users/register → 201 in 1863.6780 ms
+2026-03-22 22:37:00.153 +05:30 [INF] [UserController] Login: RoshniSrivastava
+2026-03-22 22:37:00.158 +05:30 [INF] [AuthService] Login attempt: RoshniSrivastava
+2026-03-22 22:37:00.300 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='120']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[username] = @__username_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-03-22 22:37:00.666 +05:30 [INF] [AuthService] Login success: UserId=1
+2026-03-22 22:37:00.680 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='120']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 22:37:00.689 +05:30 [INF] HTTP POST /api/v1/users/login → 200 in 548.8517 ms
+2026-03-22 22:37:47.888 +05:30 [INF] [API] Compare
+2026-03-22 22:37:47.898 +05:30 [INF] [QuantityMeasurementService] Compare 45FEET vs 90YARDS
+2026-03-22 22:37:48.027 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='120']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-03-22 22:37:48.034 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-22 22:37:48.049 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 249.8810 ms
+2026-03-22 22:53:38.674 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 130
+2026-03-22 22:58:49.858 +05:30 [INF] Checking/applying EF Core migrations to SQL Server...
+2026-03-22 22:58:53.654 +05:30 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-22 22:58:53.766 +05:30 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 22:58:53.777 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-22 22:58:53.791 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 22:58:53.878 +05:30 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-22 22:58:53.926 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-22 22:58:53.929 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-22 22:58:54.105 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 22:58:54.109 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-22 22:58:54.113 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 22:59:11.301 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 309.7444 ms
+2026-03-22 22:59:11.754 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 4.7101 ms
+2026-03-22 22:59:12.349 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 327.2210 ms
+2026-03-22 23:00:20.474 +05:30 [INF] [UserController] Register: Roshni
+2026-03-22 23:00:20.486 +05:30 [INF] [AuthService] Register attempt: Roshni
+2026-03-22 23:00:21.257 +05:30 [INF] Executed DbCommand (114ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 23:00:21.362 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 23:00:22.849 +05:30 [INF] Executed DbCommand (58ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (DbType = Boolean), @p3='?' (Size = 256), @p4='?' (Size = 512), @p5='?' (DbType = DateTime2), @p6='?' (Size = 50), @p7='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([created_at], [email], [is_active], [password_hash], [refresh_token], [refresh_token_expiry], [role], [username])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-03-22 23:00:22.926 +05:30 [INF] [UserRepository] User registered: Id=2 Username=Roshni
+2026-03-22 23:00:22.933 +05:30 [INF] [AuthService] Registered UserId=2
+2026-03-22 23:00:23.030 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 23:00:23.105 +05:30 [INF] HTTP POST /api/v1/users/register → 201 in 2858.0106 ms
+2026-03-22 23:00:45.506 +05:30 [INF] [UserController] Login: roshni
+2026-03-22 23:00:45.513 +05:30 [INF] [AuthService] Login attempt: roshni
+2026-03-22 23:00:45.811 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[username] = @__username_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-03-22 23:00:46.482 +05:30 [INF] [AuthService] Login success: UserId=2
+2026-03-22 23:00:46.499 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 23:00:46.515 +05:30 [INF] HTTP POST /api/v1/users/login → 200 in 1032.9759 ms
+2026-03-22 23:02:04.525 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-03-22 23:02:04.552 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-22 23:02:04.597 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 332.6610 ms
+2026-03-22 23:07:07.230 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 130
+2026-03-22 23:08:10.546 +05:30 [INF] Checking/applying EF Core migrations to SQL Server...
+2026-03-22 23:08:11.636 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-22 23:08:11.695 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 23:08:11.703 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-22 23:08:11.711 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-22 23:08:11.747 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-22 23:08:11.770 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-22 23:08:11.774 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-22 23:08:11.879 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-22 23:08:11.882 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-22 23:08:11.884 +05:30 [INF] === File logs → QuantityMeasurementBusinessLayer/Logs/ (rolling daily) ===
+2026-03-22 23:08:17.378 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 278.3516 ms
+2026-03-22 23:08:17.852 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 4.1537 ms
+2026-03-22 23:08:18.437 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 360.3916 ms
+2026-03-22 23:08:48.712 +05:30 [INF] [UserController] Register: RoshniSrivastava
+2026-03-22 23:08:48.720 +05:30 [INF] [AuthService] Register attempt: RoshniSrivastava
+2026-03-22 23:08:49.629 +05:30 [INF] Executed DbCommand (188ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 23:08:49.691 +05:30 [ERR] HTTP POST /api/v1/users/register → 500 in 1245.0118 ms
+System.InvalidOperationException: Username is already taken.
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 50
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-22 23:08:49.791 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Username is already taken.
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 50
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-03-22 23:08:49.835 +05:30 [ERR] [GlobalExceptionHandler] 409 | System.InvalidOperationException | Username is already taken. | POST /api/v1/users/register
+System.InvalidOperationException: Username is already taken.
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 50
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-03-22 23:09:00.557 +05:30 [INF] [UserController] Register: RoshniSrivastava1
+2026-03-22 23:09:00.561 +05:30 [INF] [AuthService] Register attempt: RoshniSrivastava1
+2026-03-22 23:09:00.764 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 23:09:00.816 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 23:09:00.829 +05:30 [ERR] HTTP POST /api/v1/users/register → 500 in 278.8929 ms
+System.InvalidOperationException: Email is already registered.
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 52
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-22 23:09:00.860 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Email is already registered.
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 52
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-03-22 23:09:00.899 +05:30 [ERR] [GlobalExceptionHandler] 409 | System.InvalidOperationException | Email is already registered. | POST /api/v1/users/register
+System.InvalidOperationException: Email is already registered.
+   at QuantityMeasurementBusinessLayer.Service.AuthService.RegisterAsync(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementBusinessLayer\Service\AuthService.cs:line 52
+   at QuantityMeasurementWebAPI.Controllers.UserController.Register(RegisterRequestDto req) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Controllers\UserController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-03-22 23:09:11.411 +05:30 [INF] [UserController] Register: RoshniSrivastava1
+2026-03-22 23:09:11.421 +05:30 [INF] [AuthService] Register attempt: RoshniSrivastava1
+2026-03-22 23:09:11.447 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 23:09:11.475 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-22 23:09:12.920 +05:30 [INF] Executed DbCommand (134ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (DbType = Boolean), @p3='?' (Size = 256), @p4='?' (Size = 512), @p5='?' (DbType = DateTime2), @p6='?' (Size = 50), @p7='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([created_at], [email], [is_active], [password_hash], [refresh_token], [refresh_token_expiry], [role], [username])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-03-22 23:09:12.994 +05:30 [INF] [UserRepository] User registered: Id=3 Username=RoshniSrivastava1
+2026-03-22 23:09:13.000 +05:30 [INF] [AuthService] Registered UserId=3
+2026-03-22 23:09:13.140 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 23:09:13.184 +05:30 [INF] HTTP POST /api/v1/users/register → 201 in 1788.9931 ms
+2026-03-22 23:09:57.120 +05:30 [INF] [UserController] Login: RoshniSrivastava1
+2026-03-22 23:09:57.129 +05:30 [INF] [AuthService] Login attempt: RoshniSrivastava1
+2026-03-22 23:09:57.328 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[username] = @__username_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-03-22 23:09:57.998 +05:30 [INF] [AuthService] Login success: UserId=3
+2026-03-22 23:09:58.026 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-22 23:09:58.047 +05:30 [INF] HTTP POST /api/v1/users/login → 200 in 953.4055 ms
+2026-03-22 23:10:40.111 +05:30 [INF] Executed DbCommand (51ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-03-22 23:10:40.145 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=SUBTRACT Cat=LENGTH Error=false
+2026-03-22 23:10:40.220 +05:30 [INF] HTTP POST /api/v1/quantities/subtract → 200 in 437.6379 ms
