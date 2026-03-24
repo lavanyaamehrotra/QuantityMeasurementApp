@@ -33,11 +33,4 @@
     <ProjectReference Include="..\QuantityMeasurementModel\QuantityMeasurementModel.csproj" />
   </ItemGroup>
 
-  <!-- Local cache file store (Console app); runtime JSON created next to executable -->
-  <ItemGroup>
-    <None Include="Data\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
