@@ -1,0 +1,351 @@
+2026-03-24 10:59:51.047 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 10:59:52.328 +05:30 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 10:59:52.409 +05:30 [INF] Executed DbCommand (54ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 10:59:52.426 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 10:59:52.440 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 10:59:52.571 +05:30 [INF] Executed DbCommand (94ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 10:59:52.593 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 10:59:52.598 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 10:59:52.720 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 10:59:52.721 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 10:59:52.722 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 11:18:24.534 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 11:18:34.335 +05:30 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 11:18:34.379 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 11:18:34.386 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 11:18:34.389 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 11:18:34.421 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 11:18:34.444 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 11:18:34.445 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 11:18:34.544 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 11:18:34.545 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 11:18:34.546 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 11:42:09.302 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 11:42:10.291 +05:30 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 11:42:10.348 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 11:42:10.358 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 11:42:10.367 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 11:42:10.468 +05:30 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 11:42:10.486 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 11:42:10.488 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 11:42:10.595 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 11:42:10.599 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 11:42:10.603 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 11:42:46.679 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 11:42:46.696 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 11:42:46.696 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 11:42:46.887 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 105.3923 ms
+2026-03-24 11:42:47.146 +05:30 [INF] [API] Compare
+2026-03-24 11:42:47.152 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-24 11:42:47.574 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:47.578 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:47.611 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 677.2515 ms
+2026-03-24 11:42:47.626 +05:30 [INF] [QuantityMeasurementService] Convert 1FEET → INCHES
+2026-03-24 11:42:47.651 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:47.652 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-03-24 11:42:47.654 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 34.7685 ms
+2026-03-24 11:42:47.681 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:47.681 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-24 11:42:47.684 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 24.5884 ms
+2026-03-24 11:42:47.723 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 19.1128 ms
+2026-03-24 11:42:47.725 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ → 404 in 0.5654 ms
+2026-03-24 11:42:47.727 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 0.3519 ms
+2026-03-24 11:42:47.821 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 91.7049 ms
+2026-03-24 11:42:47.859 +05:30 [INF] [API] Compare
+2026-03-24 11:42:47.859 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-24 11:42:47.859 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:47.860 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:47.862 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 3.2326 ms
+2026-03-24 11:42:48.004 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 140.8027 ms
+2026-03-24 11:42:48.008 +05:30 [INF] HTTP GET /health → 404 in 0.1687 ms
+2026-03-24 11:42:48.010 +05:30 [INF] HTTP GET /actuator/metrics → 404 in 0.1146 ms
+2026-03-24 11:42:48.012 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.012 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-24 11:42:48.015 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 3.0294 ms
+2026-03-24 11:42:48.022 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/ADD → 200 in 7.0060 ms
+2026-03-24 11:42:48.041 +05:30 [INF] HTTP GET /api/v1/quantities/history/type/LENGTH → 200 in 17.5828 ms
+2026-03-24 11:42:48.044 +05:30 [INF] [API] Compare
+2026-03-24 11:42:48.044 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 1FEET
+2026-03-24 11:42:48.045 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.046 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:48.049 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 4.9732 ms
+2026-03-24 11:42:48.079 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 27.9803 ms
+2026-03-24 11:42:48.083 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 1.2959 ms
+2026-03-24 11:42:48.087 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.9629 ms
+2026-03-24 11:42:48.100 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 6.4771 ms
+2026-03-24 11:42:48.104 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.5728 ms
+2026-03-24 11:42:48.116 +05:30 [INF] [API] Compare
+2026-03-24 11:42:48.116 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-24 11:42:48.117 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.118 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:48.129 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 13.8868 ms
+2026-03-24 11:42:48.133 +05:30 [INF] [API] Compare
+2026-03-24 11:42:48.133 +05:30 [INF] [QuantityMeasurementService] Compare 2FEET vs 2FEET
+2026-03-24 11:42:48.134 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.134 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:48.137 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 4.7479 ms
+2026-03-24 11:42:48.142 +05:30 [INF] [API] Compare
+2026-03-24 11:42:48.142 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-24 11:42:48.143 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.144 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:48.146 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 6.0429 ms
+2026-03-24 11:42:48.150 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.150 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=ADD Cat=LENGTH Error=false
+2026-03-24 11:42:48.153 +05:30 [INF] HTTP POST /api/v1/quantities/add → 200 in 4.8380 ms
+2026-03-24 11:42:48.157 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 3.5777 ms
+2026-03-24 11:42:48.171 +05:30 [INF] HTTP GET /api/v1/quantities/history/errored → 401 in 9.9583 ms
+2026-03-24 11:42:48.178 +05:30 [INF] [API] Compare
+2026-03-24 11:42:48.178 +05:30 [INF] [QuantityMeasurementService] Compare 5FEET vs 5FEET
+2026-03-24 11:42:48.179 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.179 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:48.182 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 4.9563 ms
+2026-03-24 11:42:48.187 +05:30 [INF] HTTP GET /api/v1/quantities/count/COMPARE → 200 in 1.8113 ms
+2026-03-24 11:42:48.191 +05:30 [INF] [API] Compare
+2026-03-24 11:42:48.191 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 12INCHES
+2026-03-24 11:42:48.192 +05:30 [INF] Saved 1 entities to in-memory store.
+2026-03-24 11:42:48.192 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 11:42:48.194 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 3.6665 ms
+2026-03-24 11:42:48.198 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 400 in 1.2794 ms
+2026-03-24 11:42:48.212 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 11.1090 ms
+2026-03-24 11:58:27.955 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 11:58:29.225 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 11:58:29.274 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 11:58:29.285 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 11:58:29.293 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 11:58:29.367 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 11:58:29.389 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 11:58:29.391 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 11:58:29.504 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 11:58:29.506 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 11:58:29.507 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 11:58:39.434 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 253.3957 ms
+2026-03-24 11:58:39.457 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 17.8455 ms
+2026-03-24 11:58:39.582 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 2.2038 ms
+2026-03-24 11:58:39.616 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 1.4556 ms
+2026-03-24 11:58:40.176 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 251.9223 ms
+2026-03-24 11:58:40.627 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 33.6816 ms
+2026-03-24 12:27:46.130 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 12:27:47.324 +05:30 [INF] Executed DbCommand (186ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 12:27:47.380 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 12:27:47.384 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 12:27:47.387 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 12:27:47.484 +05:30 [INF] Executed DbCommand (79ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 12:27:47.513 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 12:27:47.515 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 12:27:47.611 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 12:27:47.612 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 12:27:47.613 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 12:28:44.510 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 180.0143 ms
+2026-03-24 12:28:44.619 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 3.8971 ms
+2026-03-24 12:28:44.871 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 189.5488 ms
+2026-03-24 12:29:59.527 +05:30 [INF] [UserController] Register: Sam
+2026-03-24 12:29:59.534 +05:30 [INF] [AuthService] Register attempt: Sam
+2026-03-24 12:30:00.298 +05:30 [INF] Executed DbCommand (239ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-24 12:30:00.385 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-24 12:30:01.811 +05:30 [INF] Executed DbCommand (75ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (DbType = Boolean), @p3='?' (Size = 256), @p4='?' (Size = 512), @p5='?' (DbType = DateTime2), @p6='?' (Size = 50), @p7='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([created_at], [email], [is_active], [password_hash], [refresh_token], [refresh_token_expiry], [role], [username])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-03-24 12:30:01.891 +05:30 [INF] [UserRepository] User registered: Id=7 Username=Sam
+2026-03-24 12:30:01.897 +05:30 [INF] [AuthService] Registered UserId=7
+2026-03-24 12:30:02.037 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-24 12:30:02.105 +05:30 [INF] HTTP POST /api/v1/users/register → 201 in 2858.9382 ms
+2026-03-24 12:30:34.325 +05:30 [INF] [UserController] Login: sam
+2026-03-24 12:30:34.332 +05:30 [INF] [AuthService] Login attempt: sam
+2026-03-24 12:30:34.570 +05:30 [INF] Executed DbCommand (27ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[username] = @__username_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-03-24 12:30:35.068 +05:30 [INF] [AuthService] Login success: UserId=7
+2026-03-24 12:30:35.084 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-24 12:30:35.095 +05:30 [INF] HTTP POST /api/v1/users/login → 200 in 792.9380 ms
+2026-03-24 12:31:27.293 +05:30 [INF] [QuantityMeasurementService] Convert 90FEET → FEET
+2026-03-24 12:31:27.475 +05:30 [INF] Executed DbCommand (60ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-03-24 12:31:27.503 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-03-24 12:31:27.601 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 425.9990 ms
+2026-03-24 12:38:57.166 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 12:38:58.078 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 12:38:58.119 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 12:38:58.123 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 12:38:58.126 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 12:38:58.181 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 12:38:58.196 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 12:38:58.198 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 12:38:58.295 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 12:38:58.296 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 12:38:58.296 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 12:40:30.187 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 144.2439 ms
+2026-03-24 12:40:30.266 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 9.1167 ms
+2026-03-24 12:40:30.589 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 275.7475 ms
+2026-03-24 12:40:50.724 +05:30 [INF] [UserController] Register: RAM
+2026-03-24 12:40:50.731 +05:30 [INF] [AuthService] Register attempt: RAM
+2026-03-24 12:40:51.280 +05:30 [INF] Executed DbCommand (110ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-24 12:40:51.327 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-24 12:40:52.263 +05:30 [INF] Executed DbCommand (89ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (DbType = Boolean), @p3='?' (Size = 256), @p4='?' (Size = 512), @p5='?' (DbType = DateTime2), @p6='?' (Size = 50), @p7='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([created_at], [email], [is_active], [password_hash], [refresh_token], [refresh_token_expiry], [role], [username])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-03-24 12:40:52.331 +05:30 [INF] [UserRepository] User registered: Id=8 Username=RAM
+2026-03-24 12:40:52.337 +05:30 [INF] [AuthService] Registered UserId=8
+2026-03-24 12:40:52.436 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-24 12:40:52.487 +05:30 [INF] HTTP POST /api/v1/users/register → 201 in 1912.6328 ms
+2026-03-24 12:41:09.568 +05:30 [INF] [UserController] Login: RAM
+2026-03-24 12:41:09.575 +05:30 [INF] [AuthService] Login attempt: RAM
+2026-03-24 12:41:09.826 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[username] = @__username_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-03-24 12:41:10.282 +05:30 [INF] [AuthService] Login success: UserId=8
+2026-03-24 12:41:10.300 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-03-24 12:41:10.313 +05:30 [INF] HTTP POST /api/v1/users/login → 200 in 764.3750 ms
+2026-03-24 12:41:43.256 +05:30 [INF] [API] Compare
+2026-03-24 12:41:43.262 +05:30 [INF] [QuantityMeasurementService] Compare 1FEET vs 9FEET
+2026-03-24 12:41:43.399 +05:30 [INF] Executed DbCommand (54ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-03-24 12:41:43.422 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-03-24 12:41:43.498 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 304.0171 ms
+2026-03-24 12:49:12.336 +05:30 [INF] Executed DbCommand (222ms) [Parameters=[@__ToUpperInvariant_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='60']
+SELECT [q].[id], [q].[error_message], [q].[has_error], [q].[operand1_category], [q].[operand1_unit], [q].[operand1_value], [q].[operand2_category], [q].[operand2_unit], [q].[operand2_value], [q].[operation], [q].[result_category], [q].[result_unit], [q].[result_value], [q].[timestamp], [q].[user_id]
+FROM [quantity_measurements] AS [q]
+WHERE [q].[operation] = @__ToUpperInvariant_0
+ORDER BY [q].[timestamp] DESC
+2026-03-24 12:49:12.545 +05:30 [INF] HTTP GET /api/v1/quantities/history/operation/COMPARE → 200 in 1273.6928 ms
+2026-03-24 12:53:12.944 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 12:53:14.228 +05:30 [INF] Executed DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 12:53:14.284 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 12:53:14.289 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 12:53:14.294 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 12:53:14.443 +05:30 [INF] Executed DbCommand (136ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 12:53:14.462 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 12:53:14.464 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 12:53:14.556 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 12:53:14.557 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 12:53:14.558 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-03-24 14:22:38.385 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-03-24 14:22:41.412 +05:30 [INF] Executed DbCommand (97ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 14:22:41.518 +05:30 [INF] Executed DbCommand (64ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 14:22:41.530 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-03-24 14:22:41.538 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-24 14:22:41.683 +05:30 [INF] Executed DbCommand (92ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-24 14:22:41.749 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-03-24 14:22:41.756 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-03-24 14:22:42.037 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-03-24 14:22:42.042 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-03-24 14:22:42.045 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
