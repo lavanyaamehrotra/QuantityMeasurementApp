@@ -23,6 +23,7 @@ namespace QuantityMeasurementBusinessLayer.Extensions
             services.AddScoped<IQuantityMeasurementWebService>(sp => sp.GetRequiredService<QuantityMeasurementService>());
 
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IGoogleAuthService, GoogleAuthService>();  // UC19
             services.AddSingleton<IEncryptionService, AesEncryptionService>();
 
             return services;
