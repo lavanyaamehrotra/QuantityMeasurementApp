@@ -10,6 +10,7 @@ namespace QuantityMeasurementRepository.Interface
         Task<IReadOnlyList<QuantityMeasurementEFEntity>> GetByOperationAsync(string operation);
         Task<IReadOnlyList<QuantityMeasurementEFEntity>> GetByCategoryAsync(string category);
         Task<IReadOnlyList<QuantityMeasurementEFEntity>> GetErroredAsync();
+        Task<IReadOnlyList<QuantityMeasurementEFEntity>> GetByUserAsync(int userId);
         Task<int>  GetCountByOperationAsync(string operation);
         Task<int>  GetTotalCountAsync();
         Task ClearAllAsync();

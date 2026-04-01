@@ -7,9 +7,9 @@ using System.Security.Claims;
 namespace QuantityMeasurementWebAPI.Controllers
 {
     /// <summary>
-    /// UC17: Quantity operations controller.
-    /// All operations save to SQL Server (SSMS) via EF Core.
-    /// History reads served from Redis cache (5-min TTL).
+    /// Quantity operations controller.
+    /// All operations work WITHOUT login (userId saved when available).
+    /// History endpoints require JWT authentication.
     /// </summary>
     [ApiController]
     [Route("api/v1/quantities")]
@@ -28,8 +28,9 @@ namespace QuantityMeasurementWebAPI.Controllers
             return c is null ? null : int.TryParse(c.Value, out int id) ? id : null;
         }
 
-        /// <summary>Compare two quantities. Returns resultString "true" / "false".</summary>
+        /// <summary>Compare two quantities. Returns resultString "true" / "false". No login required.</summary>
         [HttpPost("compare")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(QuantityMeasurementDto), 200)]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]
         public async Task<IActionResult> Compare([FromBody] QuantityInputDto input)
@@ -38,29 +39,46 @@ namespace QuantityMeasurementWebAPI.Controllers
             return Ok(await _svc.CompareAsync(input.ThisQuantityDTO, input.ThatQuantityDTO!, UserId()));
         }
 
-        /// <summary>Convert a quantity to a different unit. ThatQuantityDTO.Unit = target unit.</summary>
+        /// <summary>Convert a quantity to a different unit. No login required.</summary>
         [HttpPost("convert")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(QuantityMeasurementDto), 200)]
         public async Task<IActionResult> Convert([FromBody] QuantityInputDto input)
             => Ok(await _svc.ConvertAsync(input.ThisQuantityDTO, input.ThatQuantityDTO!, UserId()));
 
-        /// <summary>Add two quantities. Result unit = first operand unit.</summary>
+        /// <summary>Add two quantities. No login required.</summary>
         [HttpPost("add")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(QuantityMeasurementDto), 200)]
         public async Task<IActionResult> Add([FromBody] QuantityInputDto input)
             => Ok(await _svc.AddAsync(input.ThisQuantityDTO, input.ThatQuantityDTO!, UserId()));
 
-        /// <summary>Subtract second quantity from first.</summary>
+        /// <summary>Subtract second quantity from first. No login required.</summary>
         [HttpPost("subtract")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(QuantityMeasurementDto), 200)]
         public async Task<IActionResult> Subtract([FromBody] QuantityInputDto input)
             => Ok(await _svc.SubtractAsync(input.ThisQuantityDTO, input.ThatQuantityDTO!, UserId()));
 
-        /// <summary>Divide first quantity by second. Returns dimensionless scalar ratio.</summary>
+        /// <summary>Divide first quantity by second. No login required.</summary>
         [HttpPost("divide")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(QuantityMeasurementDto), 200)]
         public async Task<IActionResult> Divide([FromBody] QuantityInputDto input)
             => Ok(await _svc.DivideAsync(input.ThisQuantityDTO, input.ThatQuantityDTO!, UserId()));
+
+        // ── History endpoints — all require JWT ──────────────────────────
+
+        /// <summary>Get full history for the currently logged-in user (filtered by UserId).</summary>
+        [HttpGet("history/me")]
+        [Authorize]
+        [ProducesResponseType(typeof(IReadOnlyList<QuantityMeasurementDto>), 200)]
+        public async Task<IActionResult> MyHistory()
+        {
+            var uid = UserId();
+            if (uid is null) return Unauthorized();
+            return Ok(await _svc.GetHistoryByUserAsync(uid.Value));
+        }
 
         /// <summary>History by operation — requires login.</summary>
         [HttpGet("history/operation/{operation}")]
@@ -83,8 +101,9 @@ namespace QuantityMeasurementWebAPI.Controllers
         public async Task<IActionResult> Errored()
             => Ok(await _svc.GetErrorHistoryAsync());
 
-        /// <summary>Count successful operations for a given operation type.</summary>
+        /// <summary>Count successful operations for a given operation type. No login required.</summary>
         [HttpGet("count/{operation}")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(object), 200)]
         public async Task<IActionResult> Count(string operation)
             => Ok(new { operation = operation.ToUpperInvariant(),
