@@ -13,6 +13,7 @@ namespace QuantityMeasurementBusinessLayer.Interface
         Task<IReadOnlyList<QuantityMeasurementDto>> GetHistoryByOperationAsync(string operation);
         Task<IReadOnlyList<QuantityMeasurementDto>> GetHistoryByCategoryAsync(string category);
         Task<IReadOnlyList<QuantityMeasurementDto>> GetErrorHistoryAsync();
+        Task<IReadOnlyList<QuantityMeasurementDto>> GetHistoryByUserAsync(int userId);
         Task<int> GetCountByOperationAsync(string operation);
     }
 }

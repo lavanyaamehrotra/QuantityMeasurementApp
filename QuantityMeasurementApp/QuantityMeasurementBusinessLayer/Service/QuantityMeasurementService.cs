@@ -178,6 +178,9 @@ namespace QuantityMeasurementBusinessLayer.Service
         public async Task<IReadOnlyList<QuantityMeasurementDto>> GetErrorHistoryAsync()
             => QuantityMeasurementDto.FromList(await RequirePersistence().GetErroredAsync());
 
+        public async Task<IReadOnlyList<QuantityMeasurementDto>> GetHistoryByUserAsync(int userId)
+            => QuantityMeasurementDto.FromList(await RequirePersistence().GetByUserAsync(userId));
+
         public async Task<int> GetCountByOperationAsync(string op)
             => await RequirePersistence().GetCountByOperationAsync(op);
 

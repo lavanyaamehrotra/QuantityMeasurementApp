@@ -44,7 +44,7 @@ namespace QuantityMeasurementRepository.Persistence
             await _db.SaveChangesAsync();
             _logger.LogInformation("[QuantityMeasurementRepository] Saved: Op={Op} Cat={Cat} Error={E}",
                 entity.Operation, entity.Operand1Category, entity.HasError);
-            await InvalidateCacheAsync(entity.Operation, entity.Operand1Category);
+            await InvalidateCacheAsync(entity.Operation, entity.Operand1Category, entity.UserId);
         }
 
         public async Task<IReadOnlyList<QuantityMeasurementEFEntity>> GetAllAsync()
@@ -91,6 +91,20 @@ namespace QuantityMeasurementRepository.Persistence
         public async Task<IReadOnlyList<QuantityMeasurementEFEntity>> GetErroredAsync()
             => await _db.Measurements.Where(m => m.HasError).OrderByDescending(m => m.Timestamp).ToListAsync();
 
+        public async Task<IReadOnlyList<QuantityMeasurementEFEntity>> GetByUserAsync(int userId)
+        {
+            string cacheKey = $"qm:user:{userId}";
+            var cached = await TryGetFromCacheAsync<List<QuantityMeasurementEFEntity>>(cacheKey);
+            if (cached is not null) return cached;
+
+            var list = await _db.Measurements
+                .Where(m => m.UserId == userId)
+                .OrderByDescending(m => m.Timestamp)
+                .ToListAsync();
+            await SetCacheAsync(cacheKey, list);
+            return list;
+        }
+
         public async Task<int> GetCountByOperationAsync(string operation)
             => await _db.Measurements.CountAsync(m => m.Operation == operation.ToUpperInvariant() && !m.HasError);
 
@@ -132,7 +146,7 @@ namespace QuantityMeasurementRepository.Persistence
                 _logger.LogWarning(ex, "[QuantityMeasurementRepository] Redis SET failed for key={Key}. Continuing without cache.", key);
             }
         }
-        private async Task InvalidateCacheAsync(string operation, string? category)
+        private async Task InvalidateCacheAsync(string operation, string? category, int? userId = null)
         {
             try
             {
@@ -140,6 +154,8 @@ namespace QuantityMeasurementRepository.Persistence
                 await _cache.RemoveAsync($"qm:op:{operation.ToUpperInvariant()}");
                 if (!string.IsNullOrWhiteSpace(category))
                     await _cache.RemoveAsync($"qm:cat:{category.ToUpperInvariant()}");
+                if (userId.HasValue)
+                    await _cache.RemoveAsync($"qm:user:{userId.Value}");
             }
             catch (Exception ex)
             {
