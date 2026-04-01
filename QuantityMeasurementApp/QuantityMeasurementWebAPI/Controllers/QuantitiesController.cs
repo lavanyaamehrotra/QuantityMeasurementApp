@@ -62,14 +62,16 @@ namespace QuantityMeasurementWebAPI.Controllers
         public async Task<IActionResult> Divide([FromBody] QuantityInputDto input)
             => Ok(await _svc.DivideAsync(input.ThisQuantityDTO, input.ThatQuantityDTO!, UserId()));
 
-        /// <summary>History by operation — Redis cached (5-min TTL), falls back to SQL Server.</summary>
+        /// <summary>History by operation — requires login.</summary>
         [HttpGet("history/operation/{operation}")]
+        [Authorize]
         [ProducesResponseType(typeof(IReadOnlyList<QuantityMeasurementDto>), 200)]
         public async Task<IActionResult> ByOperation(string operation)
             => Ok(await _svc.GetHistoryByOperationAsync(operation.ToUpperInvariant()));
 
-        /// <summary>History by measurement type (LENGTH/WEIGHT/VOLUME/TEMPERATURE).</summary>
+        /// <summary>History by measurement type — requires login.</summary>
         [HttpGet("history/type/{measurementType}")]
+        [Authorize]
         [ProducesResponseType(typeof(IReadOnlyList<QuantityMeasurementDto>), 200)]
         public async Task<IActionResult> ByType(string measurementType)
             => Ok(await _svc.GetHistoryByCategoryAsync(measurementType.ToUpperInvariant()));

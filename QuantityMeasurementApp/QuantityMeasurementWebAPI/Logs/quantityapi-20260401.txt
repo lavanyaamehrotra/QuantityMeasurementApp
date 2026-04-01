@@ -1,0 +1,233 @@
+2026-04-01 11:15:19.468 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-04-01 11:15:20.681 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 11:15:20.754 +05:30 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 11:15:20.768 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 11:15:20.777 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 11:15:20.858 +05:30 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 11:15:20.893 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 11:15:20.896 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-04-01 11:15:21.037 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-04-01 11:15:21.039 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-04-01 11:15:21.041 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-04-01 11:29:51.565 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-04-01 11:29:52.954 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 11:29:53.025 +05:30 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 11:29:53.035 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 11:29:53.049 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 11:29:53.192 +05:30 [INF] Executed DbCommand (120ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 11:29:53.247 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 11:29:53.252 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-04-01 11:29:53.403 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-04-01 11:29:53.405 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-04-01 11:29:53.406 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-04-01 11:36:08.254 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-04-01 11:36:10.442 +05:30 [INF] Executed DbCommand (87ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 11:36:10.541 +05:30 [INF] Executed DbCommand (70ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 11:36:10.551 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 11:36:10.557 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 11:36:10.658 +05:30 [INF] Executed DbCommand (74ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 11:36:10.695 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 11:36:10.698 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-04-01 11:36:10.857 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-04-01 11:36:10.859 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-04-01 11:36:10.862 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-04-01 11:36:37.658 +05:30 [INF] [UserController] Google login attempt
+2026-04-01 11:36:38.576 +05:30 [INF] [GoogleAuthService] Google token valid for: lavanyamehrotra74@gmail.com
+2026-04-01 11:36:39.544 +05:30 [INF] Executed DbCommand (248ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-04-01 11:36:39.699 +05:30 [INF] Executed DbCommand (37ms) [Parameters=[@__username_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [users] AS [u]
+        WHERE [u].[username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-01 11:36:40.961 +05:30 [INF] Executed DbCommand (103ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (DbType = Boolean), @p3='?' (Size = 256), @p4='?' (Size = 512), @p5='?' (DbType = DateTime2), @p6='?' (Size = 50), @p7='?' (Size = 100)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([created_at], [email], [is_active], [password_hash], [refresh_token], [refresh_token_expiry], [role], [username])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-04-01 11:36:41.061 +05:30 [INF] [UserRepository] User registered: Id=20 Username=lavanyamehrotra74_google
+2026-04-01 11:36:41.067 +05:30 [INF] [GoogleAuthService] Auto-created Google user Id=20
+2026-04-01 11:36:41.226 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-04-01 11:36:41.320 +05:30 [INF] HTTP POST /api/v1/users/google-login → 200 in 3900.8705 ms
+2026-04-01 11:36:41.492 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 107.5653 ms
+2026-04-01 11:38:08.771 +05:30 [INF] [UserController] Google login attempt
+2026-04-01 11:38:08.777 +05:30 [INF] [GoogleAuthService] Google token valid for: lavanya.mehrotra_cs22@gla.ac.in
+2026-04-01 11:38:08.900 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-04-01 11:38:08.925 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-04-01 11:38:08.932 +05:30 [INF] HTTP POST /api/v1/users/google-login → 200 in 184.1361 ms
+2026-04-01 11:38:08.968 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 11.2502 ms
+2026-04-01 11:41:42.858 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 48.9810 ms
+2026-04-01 11:42:10.278 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 11.8899 ms
+2026-04-01 11:53:07.504 +05:30 [INF] [UserController] Google login attempt
+2026-04-01 11:53:07.637 +05:30 [INF] [GoogleAuthService] Google token valid for: lavanya.mehrotra_cs22@gla.ac.in
+2026-04-01 11:53:08.399 +05:30 [INF] Executed DbCommand (341ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-04-01 11:53:08.640 +05:30 [INF] Executed DbCommand (81ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-04-01 11:53:08.673 +05:30 [INF] HTTP POST /api/v1/users/google-login → 200 in 1362.8562 ms
+2026-04-01 11:53:08.787 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 60.7829 ms
+2026-04-01 12:08:55.382 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-04-01 12:08:56.726 +05:30 [INF] Executed DbCommand (69ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 12:08:56.864 +05:30 [INF] Executed DbCommand (102ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 12:08:56.873 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 12:08:56.880 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 12:08:57.018 +05:30 [INF] Executed DbCommand (114ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 12:08:57.051 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 12:08:57.056 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-04-01 12:08:57.190 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-04-01 12:08:57.192 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-04-01 12:08:57.194 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-04-01 12:09:30.300 +05:30 [INF] [UserController] Google login attempt
+2026-04-01 12:09:32.300 +05:30 [INF] [GoogleAuthService] Google token valid for: lavanyamehrotra74@gmail.com
+2026-04-01 12:09:33.175 +05:30 [INF] Executed DbCommand (94ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-04-01 12:09:33.835 +05:30 [INF] Executed DbCommand (27ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-04-01 12:09:33.996 +05:30 [INF] HTTP POST /api/v1/users/google-login → 200 in 4229.4564 ms
+2026-04-01 12:09:34.246 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 205.2424 ms
+2026-04-01 12:09:48.963 +05:30 [INF] [QuantityMeasurementService] Convert 12YARD → CENTIMETER
+2026-04-01 12:09:49.464 +05:30 [INF] Executed DbCommand (45ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-04-01 12:09:49.534 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-04-01 12:09:49.716 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 942.2067 ms
+2026-04-01 12:11:08.680 +05:30 [INF] [QuantityMeasurementService] Convert 8YARD → FEET
+2026-04-01 12:11:08.748 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Boolean), @p2='?' (Size = 50), @p3='?' (Size = 50), @p4='?' (DbType = Double), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (DbType = Double), @p8='?' (Size = 50), @p9='?' (Size = 50), @p10='?' (Size = 50), @p11='?' (DbType = Double), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [quantity_measurements] ([error_message], [has_error], [operand1_category], [operand1_unit], [operand1_value], [operand2_category], [operand2_unit], [operand2_value], [operation], [result_category], [result_unit], [result_value], [timestamp], [user_id])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2026-04-01 12:11:09.001 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=CONVERT Cat=LENGTH Error=false
+2026-04-01 12:11:09.013 +05:30 [INF] HTTP POST /api/v1/quantities/convert → 200 in 337.9410 ms
+2026-04-01 12:18:26.131 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 788.0458 ms
+2026-04-01 12:18:26.473 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 5.1034 ms
+2026-04-01 12:18:27.800 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 883.5959 ms
+2026-04-01 12:20:38.317 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-04-01 12:20:40.998 +05:30 [INF] Executed DbCommand (107ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 12:20:41.182 +05:30 [INF] Executed DbCommand (125ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 12:20:41.201 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 12:20:41.209 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 12:20:41.561 +05:30 [INF] Executed DbCommand (299ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 12:20:41.624 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 12:20:41.629 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-04-01 12:20:41.835 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-04-01 12:20:41.837 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-04-01 12:20:41.839 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-04-01 12:21:01.095 +05:30 [INF] HTTP POST /api/v1/users/login → 400 in 609.7904 ms
+2026-04-01 12:21:01.095 +05:30 [INF] HTTP POST /api/v1/users/login → 400 in 609.7438 ms
+2026-04-01 12:21:06.797 +05:30 [INF] [UserController] Google login attempt
+2026-04-01 12:21:07.629 +05:30 [INF] [GoogleAuthService] Google token valid for: lavanyamehrotra74@gmail.com
+2026-04-01 12:21:08.785 +05:30 [INF] Executed DbCommand (414ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-04-01 12:21:09.402 +05:30 [INF] Executed DbCommand (119ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-04-01 12:21:09.509 +05:30 [INF] HTTP POST /api/v1/users/google-login → 200 in 2758.4703 ms
+2026-04-01 12:21:09.784 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 244.1784 ms
+2026-04-01 12:48:04.025 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-04-01 12:48:06.539 +05:30 [INF] Executed DbCommand (72ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 12:48:06.650 +05:30 [INF] Executed DbCommand (57ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 12:48:06.664 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-04-01 12:48:06.672 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 12:48:06.776 +05:30 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 12:48:06.818 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 12:48:06.823 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-04-01 12:48:07.078 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-04-01 12:48:07.080 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-04-01 12:48:07.082 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-04-01 12:48:32.630 +05:30 [INF] [UserController] Google login attempt
+2026-04-01 12:48:34.584 +05:30 [INF] [GoogleAuthService] Google token valid for: lavanyamehrotra74@gmail.com
+2026-04-01 12:48:35.400 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='60']
+SELECT TOP(1) [u].[id], [u].[created_at], [u].[email], [u].[is_active], [u].[password_hash], [u].[refresh_token], [u].[refresh_token_expiry], [u].[role], [u].[username]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0 AND [u].[is_active] = CAST(1 AS bit)
+2026-04-01 12:48:35.791 +05:30 [INF] Executed DbCommand (44ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 512), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='60']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [users] SET [refresh_token] = @p0, [refresh_token_expiry] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2026-04-01 12:48:35.848 +05:30 [INF] HTTP POST /api/v1/users/google-login → 200 in 3756.6174 ms
+2026-04-01 12:48:36.023 +05:30 [INF] HTTP GET /api/v1/users/profile → 200 in 153.1835 ms

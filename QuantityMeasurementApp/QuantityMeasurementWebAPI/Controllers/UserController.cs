@@ -12,11 +12,19 @@ namespace QuantityMeasurementWebAPI.Controllers
     [Produces("application/json")]
     public class UserController : ControllerBase
     {
-        private readonly IAuthService _auth;
+        private readonly IAuthService       _auth;
+        private readonly IGoogleAuthService _googleAuth;  // UC19
         private readonly ILogger<UserController> _logger;
 
-        public UserController(IAuthService auth, ILogger<UserController> logger)
-        { _auth = auth; _logger = logger; }
+        public UserController(
+            IAuthService auth,
+            IGoogleAuthService googleAuth,
+            ILogger<UserController> logger)
+        {
+            _auth       = auth;
+            _googleAuth = googleAuth;
+            _logger     = logger;
+        }
 
         /// <summary>Register a new user. Password is BCrypt hashed (work factor 12) before saving to SQL Server.</summary>
         [HttpPost("register")]
@@ -39,6 +47,21 @@ namespace QuantityMeasurementWebAPI.Controllers
         {
             _logger.LogInformation("[UserController] Login: {U}", req.Username);
             return Ok(await _auth.LoginAsync(req));
+        }
+
+        /// <summary>
+        /// UC19: Google OAuth2 Sign-In.
+        /// Frontend sends the Google ID Token after the user signs in with Google.
+        /// Backend validates it, finds or auto-creates the user, returns our JWT.
+        /// </summary>
+        [HttpPost("google-login")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(AuthResponseDto), 200)]
+        [ProducesResponseType(typeof(ErrorResponseDto), 401)]
+        public async Task<IActionResult> GoogleLogin([FromBody] GoogleAuthRequestDto req)
+        {
+            _logger.LogInformation("[UserController] Google login attempt");
+            return Ok(await _googleAuth.GoogleLoginAsync(req));
         }
 
         /// <summary>Refresh expired JWT using a valid refresh token. Rotates the refresh token.</summary>
