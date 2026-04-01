@@ -10,5 +10,7 @@ namespace QuantityMeasurementRepository.Interface
         Task UpdateRefreshTokenAsync(int userId, string refreshToken, DateTime expiry);
         Task<bool> UsernameExistsAsync(string username);
         Task<bool> EmailExistsAsync(string email);
+        /// <summary>UC19: Find user by email for Google OAuth sign-in.</summary>
+        Task<UserEntity?> GetByEmailAsync(string email);
     }
 }

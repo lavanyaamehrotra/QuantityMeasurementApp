@@ -57,6 +57,10 @@ namespace QuantityMeasurementRepository.Repositories
         public async Task<bool> EmailExistsAsync(string email)
             => await _db.Users.AnyAsync(u => u.Email == email);
 
+        /// <summary>UC19: Look up user by email for Google OAuth.</summary>
+        public async Task<UserEntity?> GetByEmailAsync(string email)
+            => await _db.Users.FirstOrDefaultAsync(u => u.Email == email && u.IsActive);
+
         public static string HashPassword(string plainText)
             => BCrypt.Net.BCrypt.HashPassword(plainText, WorkFactor);
 
