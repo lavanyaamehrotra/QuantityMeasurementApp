@@ -8,6 +8,7 @@ using QuantityMeasurementRepository.Repositories;
 using QuantityMeasurementRepository.Context;
 using QuantityMeasurementRepository.Interface;
 using QuantityMeasurementRepository.Persistence;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace QuantityMeasurementRepository.Extensions
 {
@@ -26,7 +27,7 @@ namespace QuantityMeasurementRepository.Extensions
                     "ConnectionStrings:QuantityMeasurementDb is missing. Set it in QuantityMeasurementWebAPI/Config/appsettings.json (or User Secrets).");
 
             services.AddDbContext<ApplicationDbContext>(opts =>
-                opts.UseSqlServer(
+                opts.UseNpgsql(
                     conn,
                     sql =>
                     {

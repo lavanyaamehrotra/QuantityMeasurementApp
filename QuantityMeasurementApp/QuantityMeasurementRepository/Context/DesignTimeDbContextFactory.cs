@@ -40,7 +40,7 @@ namespace QuantityMeasurementRepository.Context
                 .Build();
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(config.GetConnectionString("QuantityMeasurementDb"))
+                .UseNpgsql(config.GetConnectionString("QuantityMeasurementDb"))
                 .Options;
 
             return new ApplicationDbContext(options);

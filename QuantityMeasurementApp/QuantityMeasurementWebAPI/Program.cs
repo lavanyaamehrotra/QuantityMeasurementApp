@@ -28,8 +28,8 @@ try
     var configDir = Path.Combine(builder.Environment.ContentRootPath, "Config");
     builder.Configuration
         .AddJsonFile(Path.Combine(configDir, "appsettings.json"), optional: false, reloadOnChange: true)
-        .AddJsonFile(Path.Combine(configDir, $"appsettings.{builder.Environment.EnvironmentName}.json"), optional: true, reloadOnChange: true);
-
+        .AddJsonFile(Path.Combine(configDir, $"appsettings.{builder.Environment.EnvironmentName}.json"), optional: true, reloadOnChange: true)
+        .AddEnvironmentVariables();
     builder.Host.UseSerilog((context, services, loggerConfiguration) =>
     {
         var logsRoot = Path.Combine(context.HostingEnvironment.ContentRootPath, "Logs");
@@ -117,7 +117,7 @@ try
         string sqlConn = config.GetConnectionString("QuantityMeasurementDb") ?? string.Empty;
         string redisConn = config.GetConnectionString("Redis") ?? "localhost:6379";
         builder.Services.AddHealthChecks()
-            .AddSqlServer(sqlConn, name: "sqlserver", tags: new[] { "db" })
+            .AddNpgSql(sqlConn, name: "postgresql", tags: new[] { "db" })
             .AddRedis(redisConn, name: "redis", tags: new[] { "cache" });
     }
 
@@ -157,8 +157,6 @@ try
     app.UseSerilogRequestLogging(opts =>
         opts.MessageTemplate = "HTTP {RequestMethod} {RequestPath} → {StatusCode} in {Elapsed:0.0000} ms");
 
-    if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Testing"))
-    {
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
@@ -166,7 +164,7 @@ try
             c.RoutePrefix = "swagger";
             c.DisplayRequestDuration();
         });
-    }
+    
 
     app.UseCors("AllowAll");
     app.UseAuthentication();

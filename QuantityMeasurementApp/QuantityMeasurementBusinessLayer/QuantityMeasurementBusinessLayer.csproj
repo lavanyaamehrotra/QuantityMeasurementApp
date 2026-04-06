@@ -18,9 +18,9 @@
     <PackageReference Include="Google.Apis.Auth"                              Version="1.68.0" />
 
     <!-- Logging + Configuration + DI -->
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions"            Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions"      Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions"             Version="8.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions"       Version="8.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,140 @@
+2026-04-06 22:57:48.744 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 131
+2026-04-06 23:02:33.981 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 131
+2026-04-06 23:04:53.790 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 131
+2026-04-06 23:06:28.601 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 131
+2026-04-06 23:20:58.415 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 131
+2026-04-06 23:22:01.349 +05:30 [FTL] Application terminated unexpectedly: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Projects\QuantityMeasurementApp\QuantityMeasurementApp\QuantityMeasurementWebAPI\Program.cs:line 131
+2026-04-06 23:22:37.439 +05:30 [INF] Applying EF Core migrations (Config/ConnectionStrings:QuantityMeasurementDb)...
+2026-04-06 23:22:38.542 +05:30 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-04-06 23:22:38.585 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-06 23:22:38.662 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-04-06 23:22:38.734 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-04-06 23:22:38.747 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-06 23:22:38.769 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-06 23:22:38.775 +05:30 [INF] Database ready. Tables: users, quantity_measurements
+2026-04-06 23:22:38.935 +05:30 [INF] === Swagger  → http://localhost:5000/swagger ===
+2026-04-06 23:22:38.939 +05:30 [INF] === Health   → http://localhost:5000/health   (SQL + Redis) ===
+2026-04-06 23:22:38.943 +05:30 [INF] === File logs → QuantityMeasurementWebAPI/Logs/ (rolling daily) ===
+2026-04-06 23:22:48.211 +05:30 [INF] HTTP GET /swagger/index.html → 200 in 291.4104 ms
+2026-04-06 23:22:48.396 +05:30 [INF] HTTP GET /swagger/index.js → 200 in 5.1869 ms
+2026-04-06 23:22:49.130 +05:30 [INF] HTTP GET /swagger/v1/swagger.json → 200 in 292.9157 ms
+2026-04-06 23:23:17.856 +05:30 [INF] [UserController] Register: sanvi
+2026-04-06 23:23:17.864 +05:30 [INF] [AuthService] Register attempt: sanvi
+2026-04-06 23:23:18.588 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[@__username_0='?'], CommandType='"Text"', CommandTimeout='60']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u.username = @__username_0)
+2026-04-06 23:23:18.705 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='60']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u.email = @__email_0)
+2026-04-06 23:23:20.791 +05:30 [INF] Executed DbCommand (44ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?', @p7='?'], CommandType='"Text"', CommandTimeout='60']
+INSERT INTO users (created_at, email, is_active, password_hash, refresh_token, refresh_token_expiry, role, username)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING id;
+2026-04-06 23:23:20.898 +05:30 [INF] [UserRepository] User registered: Id=1 Username=sanvi
+2026-04-06 23:23:20.907 +05:30 [INF] [AuthService] Registered UserId=1
+2026-04-06 23:23:21.056 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?', @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='60']
+UPDATE users SET refresh_token = @p0, refresh_token_expiry = @p1
+WHERE id = @p2;
+2026-04-06 23:23:21.153 +05:30 [INF] HTTP POST /api/v1/users/register → 201 in 3589.0324 ms
+2026-04-06 23:23:48.870 +05:30 [INF] [UserController] Login: sanvi
+2026-04-06 23:23:48.878 +05:30 [INF] [AuthService] Login attempt: sanvi
+2026-04-06 23:23:49.219 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__username_0='?'], CommandType='"Text"', CommandTimeout='60']
+SELECT u.id, u.created_at, u.email, u.is_active, u.password_hash, u.refresh_token, u.refresh_token_expiry, u.role, u.username
+FROM users AS u
+WHERE u.username = @__username_0 AND u.is_active
+LIMIT 1
+2026-04-06 23:23:49.892 +05:30 [INF] [AuthService] Login success: UserId=1
+2026-04-06 23:23:49.903 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?', @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='60']
+UPDATE users SET refresh_token = @p0, refresh_token_expiry = @p1
+WHERE id = @p2;
+2026-04-06 23:23:49.918 +05:30 [INF] HTTP POST /api/v1/users/login → 200 in 1073.4190 ms
+2026-04-06 23:24:35.117 +05:30 [INF] [API] Compare
+2026-04-06 23:24:35.128 +05:30 [INF] [QuantityMeasurementService] Compare 6FEET vs 100FEET
+2026-04-06 23:24:35.381 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[@p0='?', @p1='?' (DbType = Boolean), @p2='?', @p3='?', @p4='?' (DbType = Double), @p5='?', @p6='?', @p7='?' (DbType = Double), @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Double), @p12='?' (DbType = DateTime), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='60']
+INSERT INTO quantity_measurements (error_message, has_error, operand1_category, operand1_unit, operand1_value, operand2_category, operand2_unit, operand2_value, operation, result_category, result_unit, result_value, timestamp, user_id)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13)
+RETURNING id;
+2026-04-06 23:24:35.403 +05:30 [INF] [QuantityMeasurementRepository] Saved: Op=COMPARE Cat=LENGTH Error=false
+2026-04-06 23:24:35.534 +05:30 [INF] HTTP POST /api/v1/quantities/compare → 200 in 528.4910 ms

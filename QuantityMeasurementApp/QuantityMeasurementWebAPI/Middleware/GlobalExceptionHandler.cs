@@ -1,6 +1,6 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using QuantityMeasurementBusinessLayer;
 using QuantityMeasurementModel.Dto;
 
@@ -24,33 +24,30 @@ namespace QuantityMeasurementWebAPI.Middleware
             Exception   exception,
             CancellationToken cancellationToken)
         {
-            // Walk the entire inner exception chain for the real SQL error
             string fullMessage = BuildFullMessage(exception);
 
             int status;
-            if (FindSqlException(exception) is { } sqlEx)
+            if (FindPostgresException(exception) is { } pgEx)
             {
                 status = 503;
                 fullMessage =
-                    $"{sqlEx.Message} (SQL error {sqlEx.Number}). " +
-                    "Ensure SQL Server is running and ConnectionStrings:QuantityMeasurementDb matches your instance. " +
-                    "Try (localdb)\\MSSQLLocalDB for Visual Studio LocalDB, or localhost\\SQLEXPRESS for SQL Express. " +
+                    $"{pgEx.Message} (PostgreSQL error {pgEx.SqlState}). " +
+                    "Ensure PostgreSQL is running and ConnectionStrings:QuantityMeasurementDb matches your instance. " +
                     "Apply schema: dotnet ef database update --project QuantityMeasurementRepository --startup-project QuantityMeasurementWebAPI";
             }
             else
             {
                 (status, fullMessage) = exception switch
                 {
-                    UnauthorizedAccessException   => (401, exception.Message),
-                    InvalidOperationException       => (409, exception.Message),
-                    ArgumentException               => (400, exception.Message),
-                    KeyNotFoundException            => (404, exception.Message),
-                    QuantityMeasurementException    => (400, exception.Message),
-                    _                               => (500, fullMessage)
+                    UnauthorizedAccessException  => (401, exception.Message),
+                    InvalidOperationException    => (409, exception.Message),
+                    ArgumentException            => (400, exception.Message),
+                    KeyNotFoundException         => (404, exception.Message),
+                    QuantityMeasurementException => (400, exception.Message),
+                    _                            => (500, fullMessage)
                 };
             }
 
-            // Log full details including inner exceptions and stack trace
             _logger.LogError(exception,
                 "[GlobalExceptionHandler] {Status} | {ExType} | {FullMsg} | {Method} {Path}",
                 status,
@@ -76,7 +73,7 @@ namespace QuantityMeasurementWebAPI.Middleware
                     503 => "Service Unavailable",
                     _   => "Internal Server Error"
                 },
-                Message = fullMessage,   // Always show full message (inner exceptions included)
+                Message = fullMessage,
                 Path    = httpContext.Request.Path
             };
 
@@ -91,10 +88,6 @@ namespace QuantityMeasurementWebAPI.Middleware
             return true;
         }
 
-        /// <summary>
-        /// Walks the full InnerException chain and concatenates all messages.
-        /// This surfaces the real SQL Server error (table not found, etc).
-        /// </summary>
         private static string BuildFullMessage(Exception ex)
         {
             var parts = new List<string>();
@@ -109,11 +102,11 @@ namespace QuantityMeasurementWebAPI.Middleware
             return string.Join(" → ", parts);
         }
 
-        private static SqlException? FindSqlException(Exception? ex)
+        private static PostgresException? FindPostgresException(Exception? ex)
         {
             while (ex != null)
             {
-                if (ex is SqlException sql) return sql;
+                if (ex is PostgresException pg) return pg;
                 ex = ex.InnerException;
             }
             return null;
