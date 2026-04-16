@@ -1,16 +1,9 @@
-# Build folders
 bin/
 obj/
-
-# Test results
-TestResults/
-
-# VS Code settings
-.vscode/
-
-# User files
+.env
 *.user
+.vs/
+.idea/
 *.suo
-
-# Logs
-*.log
+*.db
+*.sqlite

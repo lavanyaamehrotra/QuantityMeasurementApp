@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8081
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=5432;Database=auth_db;Username=postgres;Password=postgres
+      - JwtSettings__Secret=${JWT_SECRET:-YourSuperSecretKeyAtLeast32CharsLong!}
+      - JwtSettings__Issuer=${JWT_ISSUER:-QuantityMeasurementAPI}
+      - JwtSettings__Audience=${JWT_AUDIENCE:-QuantityMeasurementAPI}
+      - JwtSettings__ExpirationMinutes=${JWT_EXPIRATION_MINUTES:-60}
+      - Encryption__Key=${ENCRYPTION_KEY:-DevFallbackKey_ChangeInProduction_32Chars!}
+      - Google__ClientId=${GOOGLE_CLIENT_ID:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  qma-service:
+    build:
+      context: ./qma-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8082
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=5432;Database=qma_db;Username=postgres;Password=postgres
+      - JwtSettings__Secret=${JWT_SECRET:-YourSuperSecretKeyAtLeast32CharsLong!}
+      - JwtSettings__Issuer=${JWT_ISSUER:-QuantityMeasurementAPI}
+      - JwtSettings__Audience=${JWT_AUDIENCE:-QuantityMeasurementAPI}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - Services__AuthService=${AUTH_SERVICE_URL:-http://auth-service:8081}
+      - Services__QmaService=${QMA_SERVICE_URL:-http://qma-service:8082}
+      - JwtSettings__Secret=${JWT_SECRET:-YourSuperSecretKeyAtLeast32CharsLong!}
+      - JwtSettings__Issuer=${JWT_ISSUER:-QuantityMeasurementAPI}
+      - JwtSettings__Audience=${JWT_AUDIENCE:-QuantityMeasurementAPI}
+    depends_on:
+      - auth-service
+      - qma-service
+
+volumes:
+  pgdata:
